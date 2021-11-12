@@ -3,8 +3,8 @@ I am building GrowBuddy to work with my indoor grow.  I am intrigued to find out
 
 
 1. __(GrowBuddy)__ At present GrowBuddy automates the task of:
-- __Adjusting the CO2 level__ to the ideal level based on lights on/off
-- __Adjusting the humidity level__ to the ideal VPD level
+- __Adjusting the CO2 level__ to the ideal level based on lights on/off.
+- __Adjusting the humidity level__ to the ideal VPD level.
 
 given which growth stage the plants are in and whether lights are on or off.
 
@@ -12,7 +12,7 @@ I don't adjust the temperature because where I live the temperature stays within
 
 I provide air flow by linking several PC fans together.  The fans run 7/24.
 
-Light is provided by an LED setup.  I don't automate lighting.  I adjust PPFD by hand.  I guess I could set up a system that figured out the current height of the canopy and then adjusted the LED distance.  But for now I don't.
+Light is provided by an LED setup.  Lighting is not automated.  I guess I could set up a system that figured out the current height of the canopy and then adjusted the LED distance.  But for now I don't.
 
 2. __(Doctor GrowBuddy)__ Uses camera and machine learning to aid in plant stress diagnosis.
 
@@ -25,13 +25,17 @@ GrowBuddy:
 
 GrowBuddy does not: 
 - Automate air circulation and ventilation.  I haven't seen a need to.  Rather, I add fans to circulate the air around the plant leaves.  For ventilation, I provide input and exhaust fans.
+- Adjust the temperature.  The grow tent temperature typically ranges between 75 and 80 degrees without adjustment.
+- Automate the PPFD value for the canopy.  I do this by adjusting the lights higher or lower.
 - Automate irrigation.  Rather I choose to use the Blumat system of watering.
 
 
 <iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/LAHevcjLgqGTK7hZa98vjn"></iframe>
 
 ## Raspberry Pi
-- A __Raspberry Pi__ running __node-red__, __influxdb__, and __Grafana__ controls, stores, and monitors/graphs CO2, humidity, and air temperature.
+A __Raspberry Pi__ running __node-red__, __influxdb__, and __Grafana__ controls, stores, and monitors/graphs CO2, humidity, and air temperature.
+
+The node-red code is located [at this GitHub location](https://github.com/solarslurpi/node-red-leafspa).
 
 Here is an example of what __Grafana__ displays based on values stored in __influxdb__:
 
@@ -115,5 +119,7 @@ msg.delay = num_CO2_seconds*1000 ;
 msg.payload = msg.delay;
 return msg;
 ```
-### Turn the CO2 on for # Seconds
+#### Turn the CO2 on for # Seconds
 The node-red software uses the number of seconds calculated to turn on and off the relay controlling the CO2 solenoid.
+### Humidity Correction
+With the LED lights on, the indoor grow temperature is between 75 and 80 degrees F.  Because of this, the temperature is not adjusted.  However, the humidity is adjusted to align with ideal VPD calculations.
