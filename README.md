@@ -70,8 +70,10 @@ If the reading is valid, `global.sensor_working` is set to true. To minimize noi
 ##### Invalid Readings
 If the readings are not valid, `global.sensor_working` is set to false and the number of bad readings is tracked.
 ### Adjust CO2 Level
+The CO2 level adjustment section of code gets called every 30 seconds.
+
 _TBD: I do not detect the amount of CO2 in a tank.  Knowing this would be useful in alerting me when I need to refill the CO2 tank.  With that said, I get a rough idea over time based on the size of the tank when refilling will occur.  Thus, this feature is a low priority._
-<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/3oTnu5rQ7CTUTeLPvVAv3k"></iframe>
+![Adjust CO2 Level](images/AdjustCO2Level.jpg)
 
 #### Time to Adjust CO2 Level?
 
@@ -81,8 +83,7 @@ CO2 concentration correction DOES NOT occur when:
 - Lights are OFF (`global.CO2_ON == true`)
 - Lights have been on for less than 30 minutes (`gloval.CO2_ON == true`)
 
-#### Read and Average Values
-The SCD-30 sensor is read every 3 seconds to get the CO2 level.  To minimize noise, a sliding window of 10 values is done before using a CO2 level reading in a calculation.
+
 ### Figure out # Secs to Turn CO2 Solenoid On
 Here I use a simple PID algorithm.  The two node-red nodes that are used:
 
@@ -133,7 +134,7 @@ msg.delay = num_CO2_seconds*1000 ;
 msg.payload = msg.delay;
 return msg;
 ```
-#### Turn the CO2 on for # Seconds
+### Turn the CO2 valve on for # Seconds
 The node-red software uses the number of seconds calculated to turn on and off the relay controlling the CO2 solenoid.
 ### Humidity Correction
 With the LED lights on, the indoor grow temperature is between 75 and 80 degrees F.  Because of this, the temperature is not adjusted.  However, the humidity is adjusted to align with ideal VPD calculations.
