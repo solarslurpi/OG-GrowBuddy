@@ -38,7 +38,7 @@ The setpoints used for adjusting CO2 and VPD/humidity come from the [Fluence Can
     - No enrichment during germination (~ first two weeks).
     - 800 ppm while in vegetative (~ two months starting after germination).
     - 1200 ppm while in flowering (~ two months starting after vegetative)
-- __VPD level__ The VPD level is calculated and used to adjust the humidity.  While VPD involves both (air and leaf temperature) and humidity, I do not adjust the temperature.  Just the humidity.  How the VPD is calculated is discussed under __[Calculate the VPD](# Calculate the VPD)__
+- __VPD level__ The VPD level is calculated and used to adjust the humidity.  While VPD involves both (air and leaf temperature) and humidity, I do not adjust the temperature.  Just the humidity.  How the VPD is calculated is discussed under __[Calculate the VPD](#calculate-the-vpd)__
 
 [Custom foo description](#foo)
 
