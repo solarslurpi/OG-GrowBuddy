@@ -9,6 +9,16 @@ Includes...
 An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
 
 The Air Sensor runs on battery and sends the CO2 level, air temperature, and humidity level to the mosquitto (mqtt) broker running on the Raspberry Pi.
+### Hardware
+- [SCD30 sensor from Adafruit](https://www.adafruit.com/product/4867)
+- [ESP32 mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32) I had in my parts bin.
+- A [LiPo battery](https://www.adafruit.com/product/258) I had ordered from Adafruit a while back.
+- Because the battery ranges from 4.2 - 3.7V and these inexpensive ESP32's will blow at powering about 3.6V, I run the battery's power through an LDO I bought awhile ago on eBay or Alibaba (I don't know the brand it has a pwm on it to adjust the output voltage to 3.6).
+### Firmware
+Tasmota Sensors build with mqtt set up to a mosquitto broker running on a local Raspberry Pi.
+### Enclosure
+The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
+- GrowBuddyParams.csv: settings imported into F360.
 ## CO2 Actuator
 A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
 ## Humidifier Water Level Adjuster
