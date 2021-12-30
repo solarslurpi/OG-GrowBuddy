@@ -15,7 +15,7 @@ The Air Sensor runs on battery and sends the CO2 level, air temperature, and hum
 - A [LiPo battery](https://www.adafruit.com/product/258) I had ordered from Adafruit a while back.
 - Because the battery ranges from 4.2 - 3.7V and these inexpensive ESP32's will blow at powering about 3.6V, I run the battery's power through an LDO I bought awhile ago on eBay or Alibaba (I don't know the brand it has a pwm on it to adjust the output voltage to 3.6).
 ### Firmware
-Tasmota Sensors build with mqtt set up to a mosquitto broker running on a local Raspberry Pi.
+Tasmota Sensors build with mqtt set up to an mosquitto broker running on a local Raspberry Pi.
 ### Enclosure
 The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
 - GrowBuddyParams.csv: settings imported into F360.
