@@ -1,21 +1,44 @@
 # What is GrowBuddy?
-I am building GrowBuddy to work with my indoor grow.  My goal for Grow Buddy is to be the little buddy that does the tedious tasks so that I can enjoy other aspects of growing indoor plants.  With that said, when I am home I will always check up on my plants daily.    There are three distinct GrowBuddy "jobs".
+GrowBuddy:
+<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/FeXJ723nJx8YGJT4TGzWy7"></iframe>
+
+_The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
+
+Includes...
+## Air Sensor
+An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
+
+The Air Sensor runs on battery and sends the CO2 level, air temperature, and humidity level to the mosquitto (mqtt) broker running on the Raspberry Pi.
+## CO2 Actuator
+A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
+## Humidifier Water Level Adjuster
+A Water Level sensor that detects high and low water conditions and will pump water into the humidifier's water reservoir when a low water condition is detected.
+## LED light on/off Detection
+
+## node-red Management
+node-red is used to manage everything.  More on that below.
+
+ _NOTE: I found node-red to be a simple and powerful way to code up all incoming/outgoing activities as well as provide "smarts" such as given a grow state (e.g. Vegetative versus Flowering), how much CO2 to add and what humidity level should the grow tent space be at._
+
+
+Automatic adjustment of CO2 using a solenoid valve attached to a CO2 cannister
+monitors and adjusts the CO2 and humidity level within an indoor grow tent.  The humidity level is adjusted through monitoring and adjusting the VPD level.
+- saves readings into a database and plots the values for a comprehensive view of the environmental factors.
+
+My goal for Grow Buddy is to be the little buddy that does the tedious tasks so that I can enjoy other aspects of growing indoor plants.  With that said, when I am home I will always check up on my plants daily.    The jobs GrowBuddy handles for me include:
 ## GrowBuddy Jobs
-1. __(GrowBuddy)__ At present GrowBuddy automates the task of:
 - __Adjusting the CO2 level__ to the ideal level based on lights on/off.
 - __Adjusting the humidity level__ to the ideal VPD level.
+- __Refilling the humidifier__ when the water is low.
 
-given which growth stage the plants are in and whether lights are on or off.
+## Jobs GrowBuddy Does Not Do
+- __Adjust the temperature__ I don't adjust the temperature because where I live the temperature stays within a reasonable level for the plants to thrive.
 
-I don't adjust the temperature because where I live the temperature stays within a reasonable level for the plants to thrive.
+- __Monitor and Adjust the Air Flow__ I provide air flow by linking several PC fans together.  The fans run 7/24.
 
-I provide air flow by linking several PC fans together.  The fans run 7/24.
+- __Adjust the PPFD Level__ Light is provided by an LED setup.  Lighting is turned off/on for the correct photoperiod using a Kasa smart plug.  The PPFD value is hand adjusted using a PAR meter.  Perhaps in the future I could automate the distance the lights are from the plants based on PAR readings.
 
-Light is provided by an LED setup.  Lighting is not automated.  I guess I could set up a system that figured out the current height of the canopy and then adjusted the LED distance.  But for now I don't.
-
-2. __(Doctor GrowBuddy)__ Uses camera and machine learning to aid in plant stress diagnosis.
-
-3. __(GrowBuddy Journal)__ Journal daily growth metrics and publish to online growing diaries.
+I am working on extending GrowBuddy to include __(Doctor GrowBuddy)__.  Doctor GrowBuddy uses robotics, a camera, and machine learning to aid in plant health diagnosis.
 
 This document focuses on the #1 job: automating the obvious (CO2 enrichment level and humidity based on growth stage).
 # GrowBuddy Overview
@@ -38,12 +61,10 @@ The setpoints used for adjusting CO2 and VPD/humidity come from the [Fluence Can
     - No enrichment during germination (~ first two weeks).
     - 800 ppm while in vegetative (~ two months starting after germination).
     - 1200 ppm while in flowering (~ two months starting after vegetative)
-- __VPD level__ The VPD level is calculated and used to adjust the humidity.  While VPD involves both (air and leaf temperature) and humidity, I do not adjust the temperature.  Just the humidity.  How the VPD is calculated is discussed under __[Calculate the VPD](#calculate-the-vpd)__
-
-[Custom foo description](#foo)
+- __VPD level__ The VPD level is calculated and used to adjust the humidity.  While VPD involves both (air and leaf temperature) and humidity, I do not adjust the temperature.  Just the humidity.  How the VPD is calculated is discussed under [Calculate the VPD](#calculate-the-vpd)
 
 
-## Raspberry Pi
+## Software (Raspberry Pi)
 A __Raspberry Pi__ running __node-red__, __influxdb__, and __Grafana__ controls, stores, and monitors/graphs CO2, humidity, and air temperature.
 
 ![RaspPi pins](images/RaspPiPins.jpg)
@@ -68,7 +89,6 @@ The Raspberry Pi interacts with:
 - __Three relays__ are used to turn the CO2 solenoid on and off, turn the humidifier on and off, and one to turn the water pump on and off that delivers water to the humidifier. Each relay uses a GPIO pin.  The physical relays reside within a 3 set power outlet.  This way, the appliances being turned on and off maintain their power cords.
 - _ToDo: Infrared for leaf temperature_ I use VPD to figure out how much humidity is needed.  The VPD calculation requires the leaf temperature.  Currently, I just subtract 2 degrees F from the air temperature.  That is, I approximate.  I am exploring adding [an IR thermometer](https://smile.amazon.com/gp/product/B071VF2RWM/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
 
-# Foo
 
 ## Code Behind The Tasks
 Each automated task has it's own (node-red)flow.  The code is located in [this github repository](https://github.com/solarslurpi/node-red-leafspa).
@@ -81,7 +101,7 @@ There is a global variable, `global.sensor_working` that is used within the (nod
 - The SCD Sensor throws an error if the I2C connection is not working.  This [error is catchable](https://nodered.org/docs/user-guide/handling-errors) at runtime.
 - The other errors check what the values are and determines if they are valid.
 
-Both types of errors are handled within the (node-red) Sensor Error Check Subflow.  If there is an error, `global.sensor_working` is set to `false`.
+Both types of errors are handled within the (node-red) Sensor Error `Check Subflow`.  If there is an error, `global.sensor_working` is set to `false`.
 ##### Valid Readings
 If the reading is valid, `global.sensor_working` is set to `true`. To minimize noise, a sliding window of 10 values is used to average out the noise.  The averaged readings are then put into the global variables `global.CO2`, `global.temperature`, and `global.humidity`.
 ##### Invalid Readings
@@ -103,7 +123,7 @@ CO2 concentration correction DOES NOT occur when:
 - Lights are OFF (`global.CO2_ON == true`)
 - Lights have been on for less than 30 minutes (`gloval.CO2_ON == true`)
 #### Figure out # Secs to Turn CO2 Solenoid On
-Here I use a simple PID algorithm.  The two node-red nodes that are used:
+Here I use a simple PID algorithm. _Note: I have no training in PID controls._ The two node-red nodes that are used:
 
 ![nodes for CO2 PID](images/nodered_CO2_PID.jpg)
 
@@ -119,7 +139,6 @@ error = setpoint_CO2 - current_CO2;
 // Calculate the Proportional Correction
 Kp = flow.get("Kp");
 pCorrection = flow.get("min_CO2_on")*Kp*error;
-pCorrection = pCorrection - pCorrection % 1;
 // Calculate the Integral Correction
 cum_error = flow.get("cum_error")+error;
 flow.set("cum_error",cum_error);
@@ -173,7 +192,10 @@ msg.topic = "vpd"
 flow.set("vpd",msg.payload)
 return msg;
 ```
-The [algorithm used is from a Quest website](https://www.questclimate.com/vapor-pressure-deficit-indoor-growing-part-3-different-stages-vpd/).  In the code above, the leaf temperature (`leaf_T`) is set to be 2 degrees F less than the air temperature.  This approximation is used when there is not IR thermometer pointed at a leaf.
+#### Time to Adjust VPD?
+The [algorithm used is from a Quest website](https://www.questclimate.com/vapor-pressure-deficit-indoor-growing-part-3-different-stages-vpd/).  In the code above, the leaf temperature (`leaf_T`) is set to be 2 degrees F less than the air temperature.  This approximation is used when there is not IR thermometer pointed at a leaf.  I do not have an IR thermometer in my current prototype.  I plan on adding one once I can figure out how I want to make sure I get accurate measurements of the leaf temperature.
+
+If
 
 
 
