@@ -29,6 +29,20 @@ The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
 - Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).  The scd30 is an I2C device.  Thus, the SDA and SCL GPIO pins need to be set in configuration.  In the case of the Wemos mini32, the I2C pins are shown in the image:
 
 ![scd30 gpio config](images/scd30configGPIO.jpg)
+
+__UNDER CONSTRUCTION__
+
+from discord (@sfromis):
+If you want 20 seconds, use TelePeriod 20 and let that be it
+
+But if you want frequent data with battery, it will not work out
+ESP8266 is not suitable for battery operation, unless long deep sleep intervals
+
+Due to the extra battery train, probably not too much shorter than 5 minutes
+
+__UNDER CONSTRUCTION__
+
+
 - Best when using mqtt to pass messages such as sensor readings to an automation system.  See some [mqtt examples](https://tasmota.github.io/docs/MQTT/#examples)
 - Set a [`rule`](https://tasmota.github.io/docs/Rules/) to send the readings on wakeup. Then use [`deepsleeptime`](https://tasmota.github.io/docs/DeepSleep/) to put the ESP32 to sleep.
 in the console:  
