@@ -16,3 +16,10 @@ scd30_depth,mm,8.8 mm,
 wemos_mini_width,mm,31 mm,
 wemos_mini_length,mm,39 mm,
 wemos_mini_depth,mm,4.15 mm,
+scd30_hole_diam,mm,3 mm,
+battery_connector_width,mm,5 mm,
+battery_connector_length,mm,6 mm,
+
+
+
+

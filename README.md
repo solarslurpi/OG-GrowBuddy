@@ -15,10 +15,15 @@ The Air Sensor runs on battery and sends the CO2 level, air temperature, and hum
 - A [LiPo battery](https://www.adafruit.com/product/258) I had ordered from Adafruit a while back.
 - Because the battery ranges from 4.2 - 3.7V and these inexpensive ESP32's will blow at powering about 3.6V, I run the battery's power through an LDO I bought awhile ago on eBay or Alibaba (I don't know the brand it has a pwm on it to adjust the output voltage to 3.6).
 ### Firmware
+The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
+#### Tasmota - What I've Learned
+- Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).
+- Best when using mqtt to pass messages such as sensor readings to an automation system.
+- Use [`deepsleeptime`](https://tasmota.github.io/docs/DeepSleep/) to put the ESP32 to sleep.  Then set a [`rule`](https://tasmota.github.io/docs/Rules/) to send the readings on wakeup.
 Tasmota Sensors build with mqtt set up to an mosquitto broker running on a local Raspberry Pi.
 ### Enclosure
 The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
-- GrowBuddyParams.csv: settings imported into F360.
+- [GrowBuddyParams.csv](https://github.com/solarslurpi/GrowBuddy/blob/main/enclosure/GrowBuddyParams.csv): settings imported into F360.
 ## CO2 Actuator
 A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
 ## Humidifier Water Level Adjuster
