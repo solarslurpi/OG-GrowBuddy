@@ -33,8 +33,8 @@ From the documentation: _Rule sets are defined by using the Rule<x> command. Aft
 ### Enclosure
 The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
 - [GrowBuddyParams.csv](https://github.com/solarslurpi/GrowBuddy/blob/main/enclosure/GrowBuddyParams.csv): settings imported into F360.
-- [battery enclosure v2.f3d](): The F360 files used to design and get the STL for 3d printing of the enclosure for the battery.
-- 
+- [Fusion 360 and 3mf files](https://github.com/solarslurpi/GrowBuddy/tree/main/enclosure)
+
 ## CO2 Actuator
 A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
 ## Humidifier Water Level Adjuster
