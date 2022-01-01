@@ -4,7 +4,16 @@ GrowBuddy:
 
 _The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
 
-Includes...
+Includes:
+- A Raspberry Pi Server running:
+    - mosquitto mqtt broker
+    - influxdb
+    - node-red
+    The Raspberry Pi Server acts as the "brains" and storage unit.  It takes in mqtt messages from the Sensors and sends actions to the Actuators.
+- An Air Sensor that sends mqtt messages picked up by node-red.  node-red takes in the messages, stores in an influxdb database, as well as analyzes the readings to see if it should send on/off messages to the CO2 and High/Low Water Level Actuators.
+- A CO2 Actuator that receives mqtt ON/OFF messages from node-red.
+- A Water Level Sensor (used for water autofilling of DIY humidifier)
+- A Water Level Actuator to turn on/off a water pump (used for water autofilling of DIY humidifier)
 ## Air Sensor
 An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
 
