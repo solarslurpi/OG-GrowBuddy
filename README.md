@@ -40,7 +40,8 @@ deepsleeptime 20
 ```
 From the documentation: _Rule sets are defined by using the Rule<x> command. After defining a rule set, you have to enable it (turn it on) using Rule<x> 1. Similarly you can disable the rule set using Rule<x> 0._
 
-
+##### Setting the Time
+I just did the most simple way and set the timezone to North America Pacific (which is 8 hours behind)  with the command `timezone -8` (see [Tasmota commands](https://tasmota.github.io/docs/Commands/#management))
 ### Enclosure
 The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
 - [GrowBuddyParams.csv](https://github.com/solarslurpi/GrowBuddy/blob/main/enclosure/GrowBuddyParams.csv): settings imported into F360.
