@@ -25,6 +25,28 @@ The Air Sensor runs on battery and sends the CO2 level, air temperature, and hum
 - Because the battery ranges from 4.2 - 3.7V and these inexpensive ESP32's will blow at powering about 3.6V, I run the battery's power through an LDO I bought awhile ago on eBay or Alibaba (I don't know the brand it has a pwm on it to adjust the output voltage to 3.6).
 ### Firmware
 The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
+#### Tasmota Installation
+The easiest way to install Tasmota is using either the Edge or Chrome browser (web install doesn't work on)
+```
+https://tasmota.github.io/install/
+```
+If the USB/COM port can't be defined, change cables.  The cable might not support data i/o.  If that doesn't work, check the USB driver.  The ESP32 may be using a driver Windows (in my case) doesn't have installed.
+
+After installation, the wifi needs to be set up.
+1. Go into your phone's wifi setup and choose the Tasmota wifi Access Point.
+
+![tasmota wifi setup 1](images/tasmota_wifi_setup1.jpg)
+
+2. After a bit, a login screen will appear that will take you to a Tasmota screen where you enter your wifi's SSID and password.
+
+![tasmota wifi setup 2](images/tasmota_wifi_setup2.jpg)
+
+If all goes well, you can look at the logs and see something like:
+
+![Tasmota logs](images/Tasmoto_log_wifi.jpg)
+
+Here we've been given a local IP address of 192.168.86.46 on the wifi with the SSID of happyday.
+
 #### Tasmota - What I've Learned
 - Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).  The scd30 is an I2C device.  Thus, the SDA and SCL GPIO pins need to be set in configuration.  In the case of the Wemos mini32, the I2C pins are shown in the image:
 
