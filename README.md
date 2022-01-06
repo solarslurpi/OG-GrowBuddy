@@ -17,12 +17,22 @@ Includes:
 ## Air Sensor
 An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
 
-The Air Sensor runs on battery and sends the CO2 level, air temperature, and humidity level to the mosquitto (mqtt) broker running on the Raspberry Pi.
+The Air Sensor sends
+- the CO2 level, air temperature, and humidity level
+- whether the LED light is ON or OFF
+to the mosquitto (mqtt) broker running on the Raspberry Pi.
 ### Hardware
 - [SCD30 sensor from Adafruit](https://www.adafruit.com/product/4867)
 - [ESP32 mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32) I had in my parts bin.
-- A [LiPo battery](https://www.adafruit.com/product/258) I had ordered from Adafruit a while back.
-- Because the battery ranges from 4.2 - 3.7V and these inexpensive ESP32's will blow at powering about 3.6V, I run the battery's power through an LDO I bought awhile ago on eBay or Alibaba (I don't know the brand it has a pwm on it to adjust the output voltage to 3.6).
+- Photoresistor and 10K resistor for light on/off detection.
+
+_Note: I wanted to use a battery to power the Air Sensor.  However, it turns out the ESP32 was not designed for battery power. From a Discord chat:_
+```
+ESP8266 is not suitable for battery operation, unless long deep sleep intervals
+
+Due to the extra battery t[d]rain, probably not too much shorter than 5 minutes
+```
+
 ### Firmware
 The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
 #### Tasmota Installation
@@ -52,29 +62,13 @@ Here we've been given a local IP address of 192.168.86.46 on the wifi with the S
 
 ![scd30 gpio config](images/scd30configGPIO.jpg)
 
-__UNDER CONSTRUCTION__
-
-from discord (@sfromis):
-If you want 20 seconds, use TelePeriod 20 and let that be it
-
-But if you want frequent data with battery, it will not work out
-ESP8266 is not suitable for battery operation, unless long deep sleep intervals
-
-Due to the extra battery train, probably not too much shorter than 5 minutes
-
-__UNDER CONSTRUCTION__
-
-
 - Best when using mqtt to pass messages such as sensor readings to an automation system.  See some [mqtt examples](https://tasmota.github.io/docs/MQTT/#examples)
-- Set a [`rule`](https://tasmota.github.io/docs/Rules/) to send the readings on wakeup. Then use [`deepsleeptime`](https://tasmota.github.io/docs/DeepSleep/) to put the ESP32 to sleep.
-in the console:  
+##### Setting the Teleperiod
+The `teleperiod` commands sets the interval between sending mqtt readings to the broker.  e.g.:
 ```
-Rule1
-ON Mqtt#Connected DO publish tele/growbuddy/SENSOR %value% ENDON
-Rule1 1
-deepsleeptime 20
+teleperiod 20
 ```
-From the documentation: _Rule sets are defined by using the Rule<x> command. After defining a rule set, you have to enable it (turn it on) using Rule<x> 1. Similarly you can disable the rule set using Rule<x> 0._
+sets sending readings via mqtt to occur every 20 seconds.
 
 ##### Setting the Time
 I just did the most simple way and set the timezone to North America Pacific (which is 8 hours behind)  with the command `timezone -8` (see [Tasmota commands](https://tasmota.github.io/docs/Commands/#management))
