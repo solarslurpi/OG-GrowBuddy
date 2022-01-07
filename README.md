@@ -5,12 +5,12 @@ GrowBuddy:
 _The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
 
 Includes:
-- A Raspberry Pi Server running:
+- A __Raspberry Pi Server__ running:
     - mosquitto mqtt broker
     - influxdb
     - node-red
     The Raspberry Pi Server acts as the "brains" and storage unit.  It takes in mqtt messages from the Sensors and sends actions to the Actuators.
-- An Air Sensor that sends mqtt messages picked up by node-red.  node-red takes in the messages, stores in an influxdb database, as well as analyzes the readings to see if it should send on/off messages to the CO2 and High/Low Water Level Actuators.
+- An __Air Sensor__ that sends mqtt messages picked up by node-red.  node-red takes in the messages, stores in an influxdb database, as well as analyzes the readings to see if it should send on/off messages to the CO2 and High/Low Water Level Actuators.
 - A CO2 Actuator that receives mqtt ON/OFF messages from node-red.
 - A Water Level Sensor (used for water autofilling of DIY humidifier)
 - A Water Level Actuator to turn on/off a water pump (used for water autofilling of DIY humidifier)
@@ -58,9 +58,7 @@ If all goes well, you can look at the logs and see something like:
 Here we've been given a local IP address of 192.168.86.46 on the wifi with the SSID of happyday.
 
 #### Tasmota - What I've Learned
-- Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).  The scd30 is an I2C device.  Thus, the SDA and SCL GPIO pins need to be set in configuration.  In the case of the Wemos mini32, the I2C pins are shown in the image:
-
-![scd30 gpio config](images/scd30configGPIO.jpg)
+- Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  
 
 - Best when using mqtt to pass messages such as sensor readings to an automation system.  See some [mqtt examples](https://tasmota.github.io/docs/MQTT/#examples)
 ##### Setting the Teleperiod
@@ -72,6 +70,22 @@ sets sending readings via mqtt to occur every 20 seconds.
 
 ##### Setting the Time
 I just did the most simple way and set the timezone to North America Pacific (which is 8 hours behind)  with the command `timezone -8` (see [Tasmota commands](https://tasmota.github.io/docs/Commands/#management))
+##### Setting the GPIO Pins
+- scd30
+
+The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).  The scd30 is an I2C device.  Thus, the SDA and SCL GPIO pins need to be set in configuration.  
+- Photoresistor
+
+The analog wire of the photoresistor circuit uses GPIO pin 34.
+
+The Tasmota GPIO configuration is:
+
+![gpio config](images/Tasmota_gpio_config.jpg)
+
+##### mqtt Configuration
+
+![Tasmota mqtt configuration](images/Tasmota_mqtt_setup.jpg)
+
 ### Enclosure
 The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
 - [GrowBuddyParams.csv](https://github.com/solarslurpi/GrowBuddy/blob/main/enclosure/GrowBuddyParams.csv): settings imported into F360.
@@ -81,7 +95,7 @@ The enclosure was designed within F360 and printed on a Prusa MK3s.  Files withi
 A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
 ## Humidifier Water Level Adjuster
 A Water Level sensor that detects high and low water conditions and will pump water into the humidifier's water reservoir when a low water condition is detected.
-## LED light on/off Detection
+
 
 ## node-red Management
 node-red is used to manage everything.  More on that below.
