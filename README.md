@@ -82,6 +82,14 @@ The Tasmota GPIO configuration is:
 
 ![gpio config](images/Tasmota_gpio_config.jpg)
 
+Here is an example of output when the LEDs are on:
+![Analog reading when LEDs are on](images/Tasmota_analog_reading.jpg)
+
+When the LED lights are off and the tent is closed, the reading is 0.  We need a rule that is triggered when the light changes from the very high level.
+```
+
+Rule 5
+
 ##### mqtt Configuration
 
 ![Tasmota mqtt configuration](images/Tasmota_mqtt_setup.jpg)
