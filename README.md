@@ -96,8 +96,6 @@ Rule 5
 Rule on analog#a1>4000= do publish tele/growbuddy/SENSOR ON endon on analog#a1<4000 do publish tele/growbuddy/SENSOR OFF endon
 Rule1 1
 ```
-
-
 ##### mqtt Configuration
 
 ![Tasmota mqtt configuration](images/Tasmota_mqtt_setup.jpg)
