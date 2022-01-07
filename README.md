@@ -86,9 +86,17 @@ Here is an example of output when the LEDs are on:
 ![Analog reading when LEDs are on](images/Tasmota_analog_reading.jpg)
 
 When the LED lights are off and the tent is closed, the reading is 0.  We need a rule that is triggered when the light changes from the very high level.
+##### Rule to Publish Light ON/OFF Events
+Useful resources:
+- [Howto:...rules... ](https://community.homey.app/t/howto-extend-the-use-of-a-wemos-d1-mini-using-rules-mqtt-client/13016)
+- [Tasmota Rules Doc](https://tasmota.github.io/docs/Rules/#toggle-relay-when-holding-button-for-2-seconds)
+```
+Rule1
+Rule 5
+Rule on analog#a1>4000= do publish tele/growbuddy/SENSOR ON endon on analog#a1<4000 do publish tele/growbuddy/SENSOR OFF endon
+Rule1 1
 ```
 
-Rule 5
 
 ##### mqtt Configuration
 
