@@ -17,8 +17,11 @@ Includes:
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
 - The __Sniffer Buddy__ 
-    - reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
-    - sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
+
+Plug it in and __The Sniffer Buddy__:
+
+ - reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
+- sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
 ![sniffer buddy](images/Sniffer_Buddy.JPEG)
 
 - The __Flipper Buddy__
@@ -29,19 +32,9 @@ Includes:
 TBD: PAR meter perhaps auto adjust of lights.
 
 ## Sniffer Buddy
-The SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  A photoresistor is attached to the top so that __The Director__ can detect when the light goes off and on.  The home's wifi is used to send the readings to __The Director__.
+An SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  A photoresistor is attached to the top so that __The Director__ can detect when the light goes off and on.  The home's wifi is used to send the readings to __The Director__.
 
-### Hardware
-- [SCD30 sensor from Adafruit](https://www.adafruit.com/product/4867)
-- [ESP32 mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32) I had in my parts bin.
-- Photoresistor and 10K resistor for light on/off detection.
-
-_Note: I wanted to use a battery to power the Air Sensor.  However, it turns out the ESP32 was not designed for battery power. From a Discord chat:_
-```
-ESP8266 is not suitable for battery operation, unless long deep sleep intervals
-
-Due to the extra battery t[d]rain, probably not too much shorter than 5 minutes
-```
+[__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
 
 ### Firmware
 The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
