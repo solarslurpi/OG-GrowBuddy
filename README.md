@@ -17,17 +17,21 @@ Includes:
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
 - The __Sniffer Buddy__ 
+
+![sniffer buddy](images/Sniffer_Buddy.JPEG)
+
+
     - reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
     - sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
 - The __Flipper Buddy__
     - a smart plug that can be commanded to turn an appliance plugged into it on and off.
-- The __Filler Buddy__
+- The __FillerUp Buddy__
     - Will automatically fill the humidifier with water when it detects the humidifier is low on water.
 - The __Light Buddy__
 TBD: PAR meter perhaps auto adjust of lights.
 
 ## Sniffer Buddy
-An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
+The SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
 
 The Air Sensor sends
 - the CO2 level, air temperature, and humidity level
