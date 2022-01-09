@@ -5,7 +5,7 @@ GrowBuddy:
 _The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
 
 Includes:
-- __The Guide__
+- __The Growbuddy Guide__
     A smartphone app that guides the grower through every step of the grow stage and supports journaling of what happened each day as well as a way to send questions.
 - __The Director__
     The Director is a __Raspberry Pi__ running:
