@@ -5,16 +5,28 @@ GrowBuddy:
 _The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
 
 Includes:
-- A __Raspberry Pi Server__ running:
+- __The Guide__
+    A smartphone app that guides the grower through every step of the grow stage and supports journaling of what happened each day as well as a way to send questions.
+- __The Director__
+    The Director is a __Raspberry Pi__ running:
     - mosquitto mqtt broker
     - influxdb
     - node-red
-    The Raspberry Pi Server acts as the "brains" and storage unit.  It takes in mqtt messages from the Sensors and sends actions to the Actuators.
-- An __Air Sensor__ that sends mqtt messages picked up by node-red.  node-red takes in the messages, stores in an influxdb database, as well as analyzes the readings to see if it should send on/off messages to the CO2 and High/Low Water Level Actuators.
-- A CO2 Actuator that receives mqtt ON/OFF messages from node-red.
-- A Water Level Sensor (used for water autofilling of DIY humidifier)
-- A Water Level Actuator to turn on/off a water pump (used for water autofilling of DIY humidifier)
-## Air Sensor
+    It's called __The Director__ because it acts as the "brains" and storage unit.  node-red is the code acting as the brains.  It:
+    - Takes in mqtt messages sent by the Buddies.
+    - Records the sensor readings into influxdb.
+    - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
+- The __Sniffer Buddy__ 
+    - reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
+    - sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
+- The __Flipper Buddy__
+    - a smart plug that can be commanded to turn an appliance plugged into it on and off.
+- The __Filler Buddy__
+    - Will automatically fill the humidifier with water when it detects the humidifier is low on water.
+- The __Light Buddy__
+TBD: PAR meter perhaps auto adjust of lights.
+
+## Sniffer Buddy
 An Air Sensor built around an scd-30 sensor attached to an ESP32 microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  
 
 The Air Sensor sends
