@@ -1,6 +1,7 @@
 # What is GrowBuddy?
 GrowBuddy:
-<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/FeXJ723nJx8YGJT4TGzWy7"></iframe>
+![GrowBuddy](images/GrowBuddy.png)
+
 
 _The [drawing in Whimisical](https://whimsical.com/growbuddy-FeXJ723nJx8YGJT4TGzWy7) includes links of interest._
 
@@ -20,8 +21,8 @@ Includes:
 
 Plug it in and __The Sniffer Buddy__:
 
- - reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
-- sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
+ - Reads the air temperature, humidity, and CO2 level.  It sends the readings to __The Director__.
+- Sends light level information to __The Director__ so that __The Director__ can have a second source (besides a light timer) to determine if the LED grow lights are on or off.
 ![sniffer buddy](images/Sniffer_Buddy.JPEG)
 
 - The __Flipper Buddy__
@@ -36,43 +37,8 @@ An SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller runn
 
 [__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
 
-### Firmware
-The Air Sensor uses the Tasmota Sensors build.  This is my first use of Tasmota.
-#### Tasmota Installation
-The easiest way to install Tasmota is using either the Edge or Chrome browser (web install doesn't work on)
-```
-https://tasmota.github.io/install/
-```
-If the USB/COM port can't be defined, change cables.  The cable might not support data i/o.  If that doesn't work, check the USB driver.  The ESP32 may be using a driver Windows (in my case) doesn't have installed.
 
-After installation, the wifi needs to be set up.
-1. Go into your phone's wifi setup and choose the Tasmota wifi Access Point.
-
-![tasmota wifi setup 1](images/tasmota_wifi_setup1.jpg)
-
-2. After a bit, a login screen will appear that will take you to a Tasmota screen where you enter your wifi's SSID and password.
-
-![tasmota wifi setup 2](images/tasmota_wifi_setup2.jpg)
-
-If all goes well, you can look at the logs and see something like:
-
-![Tasmota logs](images/Tasmoto_log_wifi.jpg)
-
-Here we've been given a local IP address of 192.168.86.46 on the wifi with the SSID of happyday.
-
-#### Tasmota - What I've Learned
-- Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  
-
-- Best when using mqtt to pass messages such as sensor readings to an automation system.  See some [mqtt examples](https://tasmota.github.io/docs/MQTT/#examples)
-##### Setting the Teleperiod
-The `teleperiod` commands sets the interval between sending mqtt readings to the broker.  e.g.:
-```
-teleperiod 20
-```
-sets sending readings via mqtt to occur every 20 seconds.
-
-##### Setting the Time
-I just did the most simple way and set the timezone to North America Pacific (which is 8 hours behind)  with the command `timezone -8` (see [Tasmota commands](https://tasmota.github.io/docs/Commands/#management))
+)
 ##### Setting the GPIO Pins
 - scd30
 
@@ -89,16 +55,7 @@ Here is an example of output when the LEDs are on:
 ![Analog reading when LEDs are on](images/Tasmota_analog_reading.jpg)
 
 When the LED lights are off and the tent is closed, the reading is 0.  We need a rule that is triggered when the light changes from the very high level.
-##### Rule to Publish Light ON/OFF Events
-Useful resources:
-- [Howto:...rules... ](https://community.homey.app/t/howto-extend-the-use-of-a-wemos-d1-mini-using-rules-mqtt-client/13016)
-- [Tasmota Rules Doc](https://tasmota.github.io/docs/Rules/#toggle-relay-when-holding-button-for-2-seconds)
-```
-Rule1
-Rule 5
-Rule on analog#a1>4000= do publish tele/growbuddy/SENSOR ON endon on analog#a1<4000 do publish tele/growbuddy/SENSOR OFF endon
-Rule1 1
-```
+
 ##### mqtt Configuration
 
 ![Tasmota mqtt configuration](images/Tasmota_mqtt_setup.jpg)
