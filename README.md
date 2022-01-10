@@ -18,6 +18,7 @@ Includes:
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
 - Buddies Built on Tasmota
+    [Tasmota](https://tasmota.github.io/docs/) simplifies setting up home automations because it is fairly straightforward to get a sensor, switch, relay running Tasmota to be controlled.  It assumes an ESP286 or ESP32 CPU.  Once installed, you connect it to your home's wifi.  Once configured, mqtt messages can be published.
 
     [Tasmota learnings](pages/Tasmota_learnings.md)
     

@@ -21,3 +21,5 @@ The image shows how to wire each sensor:
 One sensor is used to detect when there is not enough water.  If this sensor is triggered, a water pump is turned on an water flows into the humidifier's container.  The other sensor is used to detect when the container is full.  If this sensor is triggered, the water pump is turned off.
 
 _TBD: Can all this be done without node-red?_
+
+set up switch 1 for low water level.  FULL  - When switch = OFF, there is water.  EMPTY - When switch = ON.  No water detected.  Also sensor red light is on when full/switch is off.

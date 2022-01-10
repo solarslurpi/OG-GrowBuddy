@@ -68,3 +68,8 @@ The first line enables the rules, the second stops repetitive messages & only tr
 # ESPs I have used
 - [Wemos mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32)...This is a cheap clone that isn't really a Wemos..
 - [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1)...another cheap clone I got from aliexpress.
+
+## Tasmota on mini D1 ESP286
+When I first install the `Tasmota Sensors` build on an ESP286, The console has been configured to be `Sonoff basic` module type.  I change this to `Generic(18)` module type.
+
+![Generic 18 module type](../images/Tasmota_on_D1_esp286.jpg)
