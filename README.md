@@ -17,18 +17,20 @@ Includes:
     - Takes in mqtt messages sent by the Buddies.
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
-- The __Sniffer Buddy__ 
+- Buddies Built on Tasmota
+[Tasmota learnings](pages/Tasmota_learnings.md)
+    - The __Sniffer Buddy__ 
 
     Plug it in and __The Sniffer Buddy__:
 
--  Reads the air temperature, humidity, and CO2 level. 
--  Reads the value of a photoresitor mounted on top of the enclosure.  This gives __The Director__ a second source (besides a light timer) to determine if the LED grow lights are on or off.
+    -  Reads the air temperature, humidity, and CO2 level. 
+    -  Reads the value of a photoresitor mounted on top of the enclosure.  This gives __The Director__ a second source (besides a light timer) to determine if the LED grow lights are on or off.
 
-The readings are published via mqtt.
+    The readings are published via mqtt.
 
-[__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
-- The __FillerUp Buddy__
-    - Will automatically fill the humidifier with water when it detects the humidifier is low on water.
+    [__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
+    - The __FillerUp Buddy__
+       - Will automatically fill the humidifier with water when it detects the humidifier is low on water.
 
 - The __Flipper Buddy__
     - a smart plug that can be commanded to turn an appliance plugged into it on and off.
@@ -42,22 +44,7 @@ TBD: PAR meter perhaps auto adjust of lights.
 
 
 )
-##### Setting the GPIO Pins
-- scd30
 
-The scd30 has a built in driver.  See [Tasmota Peripherals](https://tasmota.github.io/docs/Supported-Peripherals/).  The scd30 is an I2C device.  Thus, the SDA and SCL GPIO pins need to be set in configuration.  
-- Photoresistor
-
-The analog wire of the photoresistor circuit uses GPIO pin 34.
-
-The Tasmota GPIO configuration is:
-
-![gpio config](images/Tasmota_gpio_config.jpg)
-
-Here is an example of output when the LEDs are on:
-![Analog reading when LEDs are on](images/Tasmota_analog_reading.jpg)
-
-When the LED lights are off and the tent is closed, the reading is 0.  We need a rule that is triggered when the light changes from the very high level.
 
 ##### mqtt Configuration
 
