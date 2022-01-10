@@ -32,6 +32,15 @@ teleperiod 20
 sets sending readings via mqtt to occur every 20 seconds.
 ### Local Time
 Also in the Console, I just did the most simple way and set the timezone to North America Pacific (which is 8 hours behind)  with the command `timezone -8` (see [Tasmota commands](https://tasmota.github.io/docs/Commands/#management)
+
+This command set the correct timezone stuff for PST:
+```
+Use the web console to configure the Timezone (this shows Pacific time):
+
+Backlog Timezone 99 ; TimeDST 0,2,03,1,3,-420 ; TimeSTD 0,1,11,1,2,-480
+The 99 says to use TimeDST and TimeSTD. Use "time" to check.
+```
+[Thank you Craig's Tasmota page](https://xse.com/leres/tasmota/)
 ### i2cscan
 Executing `i2cscan` from the console is useful to show you if the i2c sensor is wired correct.y
 
