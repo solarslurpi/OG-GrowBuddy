@@ -18,7 +18,9 @@ Includes:
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
 - Buddies Built on Tasmota
-[Tasmota learnings](pages/Tasmota_learnings.md)
+
+    [Tasmota learnings](pages/Tasmota_learnings.md)
+    
     - The __Sniffer Buddy__ 
 
     Plug it in and __The Sniffer Buddy__:
