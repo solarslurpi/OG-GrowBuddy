@@ -2,6 +2,8 @@
 [Back to Top](../README.md)
 
 ![Sniffer Buddy](../images/Sniffer_Buddy.JPEG)
+
+An SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  A photoresistor is attached to the top so that __The Director__ can detect when the light goes off and on.  The home's wifi is used to send the readings to __The Director__.
 ## Current Status
 Prototype V2
 
