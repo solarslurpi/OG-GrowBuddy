@@ -51,14 +51,6 @@ TBD: PAR meter perhaps auto adjust of lights.
 )
 
 
-##### mqtt Configuration
-
-![Tasmota mqtt configuration](images/Tasmota_mqtt_setup.jpg)
-
-### Enclosure
-The enclosure was designed within F360 and printed on a Prusa MK3s.  Files within the enclosure folder include:
-- [GrowBuddyParams.csv](https://github.com/solarslurpi/GrowBuddy/blob/main/enclosure/GrowBuddyParams.csv): settings imported into F360.
-- [Fusion 360 and 3mf files](https://github.com/solarslurpi/GrowBuddy/tree/main/enclosure)
 
 ## CO2 Actuator
 A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
