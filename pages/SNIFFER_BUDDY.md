@@ -14,12 +14,11 @@ Here is an example of the mqtt message with the `tele/growbuddy/sensor` that get
 ```
 The message is picked up by anyone subscribed to this topic - like the node-red flows.
 
-An SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  A photoresistor is attached to the top so that __The Director__ can detect when the light goes off and on.  The home's wifi is used to send the readings to __The Director__.
 ## Current Status
 Prototype V2
 
 
-### Hardware
+### Hardware in This Prototype
 - [SCD30 sensor from Adafruit](https://www.adafruit.com/product/4867)
 - [ESP826 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1) I had in my parts bin.
 - Photoresistor and 10K resistor for light on/off detection.  I also had these parts in my parts bin.
