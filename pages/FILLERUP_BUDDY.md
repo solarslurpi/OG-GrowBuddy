@@ -11,12 +11,16 @@ Prototype V2
 # DIY Humidifier
 TODO
 # Water Level Sensors
+[DFRobot's Schematic](https://github.com/Arduinolibrary/DFRobot_Non-contact_Liquid_Level_Sensor_XKC-Y25-T12V/blob/master/SEN0204%20%20Liquid%20Level%20Sensor-XKC-Y25-T12V.pdf)
+The [Contactless Water Level Sensors](https://amzn.to/3FcRsNK)
 The image shows how to wire each sensor:
 ![water level sensor](../images/FillerUp_Buddy_schematic.jpg)
+## Wiring 
 
+## Wire Colors
 - The BLUE and BLACK wires can be combined and then go to ground.
 - The BROWN wire goes to 3.3V.
-- The YELLOW wire goes to a GPIO pin.  There is a pull-up resistor between 3.3V and the GPIO wire.
+- The YELLOW wire goes to a GPIO pin.  There is a 1K pull-up resistor between 3.3V and the GPIO wire.
 
 One sensor is used to detect when there is not enough water.  If this sensor is triggered, a water pump is turned on an water flows into the humidifier's container.  The other sensor is used to detect when the container is full.  If this sensor is triggered, the water pump is turned off.
 
