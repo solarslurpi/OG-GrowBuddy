@@ -1,6 +1,13 @@
 # Sniffer Buddy 
 [Back to Top](../README.md)
 
+1) Reads the air temperature, CO2 level, and humidity.
+2) Uses mqtt to publish the readings to the `tele/growbuddy/SENSOR` topic.
+
+Here is an example of the mqtt message that gets published:
+```
+"ANALOG":{"A0":1023},"SCD30":{"CarbonDioxide":598,"eCO2":569,"Temperature":24.7,"Humidity":46.4,"DewPoint":12.4}
+```
 ![Sniffer Buddy](../images/Sniffer_Buddy.JPEG)
 
 An SCD-30 or SCD-40 sensor is attached to an ESP(286 or 32) microcontroller running Tasmota to monitor the CO2, air temperature, and humidity level within an indoor grow tent.  A photoresistor is attached to the top so that __The Director__ can detect when the light goes off and on.  The home's wifi is used to send the readings to __The Director__.

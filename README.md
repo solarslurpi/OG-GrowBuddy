@@ -33,7 +33,9 @@ Includes:
 
     [__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
     - The __FillerUp Buddy__
-       - Will automatically fill the humidifier with water when it detects the humidifier is low on water.
+    Plug it in and the FillerUp Buddy will automatically detect when the water level in the humidifier is low.  It will request a __Plug Buddy__ to turn on the water pump it is attached to whent it is low and turn off the pump when the high water level mark is reached.
+
+    [__The FillerUp Buddy__ in depth](pages/FILLERUP_BUDDY.md)
 
 - The __Flipper Buddy__
     - a smart plug that can be commanded to turn an appliance plugged into it on and off.
