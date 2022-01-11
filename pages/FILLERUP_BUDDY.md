@@ -11,7 +11,7 @@ Prototype V2
 # DIY Humidifier
 TODO
 # Water Level Sensors
-[DFRobot's Schematic](https://github.com/Arduinolibrary/DFRobot_Non-contact_Liquid_Level_Sensor_XKC-Y25-T12V/blob/master/SEN0204%20%20Liquid%20Level%20Sensor-XKC-Y25-T12V.pdf)
+[DFRobot's Schematic](https://github.com/solarslurpi/GrowBuddy/blob/main/docs/SEN0204%20%20Liquid%20Level%20Sensor-XKC-Y25-T12V.pdf)
 The [Contactless Water Level Sensors](https://amzn.to/3FcRsNK)
 The image shows how to wire each sensor:
 ![water level sensor](../images/FillerUp_Buddy_schematic.jpg)
