@@ -13,7 +13,7 @@ Prototype V2
 - We were not using Tasmota/wifi for each Buddy.  Instead, we wired directly to a Raspberry Pi.  This proved to be an unreliable bunch-o-wires bundle.  With Tasmota/wifi, we don't need to put the Raspberry Pi inside the Grow Tent.  Removed A LOT of clutter.
 - Tasmota afforded an easy way to get from putting the sensor together with an ESP chip and getting to mqtt messages.
 - mqtt is a great technology for all these buddies interacting to help us with mundane tasks.
-- getting to a good enclosure is really hard. More planning is needed.
+- getting to a good enclosure is really hard. More planning is needed.  Particularly around wires and connectors.  I'll collect my thoughts on wiring on [the wiring page](WIRING_and_connectors.md)
 - getting to a good physical device requires special attention to wiring.  Which becomes a mess.  More attention to detail is needed in wiring and what connectors to use.
 - The current ESPs do not handle battery powered.  The Buddies need to be plugged into power.
 ## mqtt

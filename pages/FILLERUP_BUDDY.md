@@ -16,6 +16,7 @@ The [Contactless Water Level Sensors](https://amzn.to/3FcRsNK)
 The image shows how to wire each sensor:
 ![water level sensor](../images/FillerUp_Buddy_schematic.jpg)
 ## Wiring 
+Also see [wiring thoughts](WIRING_and_connectors.md)
 
 ## Wire Colors
 - The BLUE and BLACK wires can be combined and then go to ground.
