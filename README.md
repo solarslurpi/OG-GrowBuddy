@@ -1,3 +1,6 @@
+# Useful pages
+- [Tasmota learnings](pages/Tasmota_learnings.md)
+- [mqtt on rasp pi learnings](pages/mqtt_learnings.md)
 # What is GrowBuddy?
 GrowBuddy:
 ![GrowBuddy](images/GrowBuddy.png)
