@@ -1,8 +1,9 @@
 # mqtt
+[Back to Top](../README.md)
 We use the mosquitto broker running on a raspberry pi.
 ## Installing
 It's easiest to follow [one of the many available guides](https://pimylifeup.com/raspberry-pi-mosquitto-mqtt-server/). _Note: I didn't realize the package installer will install mosquitto as a service and start it running: From the article_ `During the installation process, the package manager will automatically configure the Mosquitto server to start on boot.` _I aslo did the systemd service incantations..._
-## Configuration
+## Configuring
  In order to connect to the mosquitto service, the conf file must be modified.  This doesn't need to happen if everything communicating are Tasmota devices.  However, I also have React Native apps that need to connect over websockets, which is not configured by default.  The best way to add this to the configuration is to  use the `/etc/mosquitto/conf.d/connect.conf file:
 ```
 listener 1883
