@@ -1,6 +1,9 @@
 # mqtt
 [Back to Top](../README.md)
 We use the mosquitto broker running on a raspberry pi.
+## Resources
+- [Installing mosquitto on Rasp Pi](https://pimylifeup.com/raspberry-pi-mosquitto-mqtt-server/)
+- [mqtt Explorer](http://mqtt-explorer.com/) - this tool helped me figure out the message format for turning on and off the relay in the S3...e.g.: `cmnd/plug_fillerup/POWER` is the topic for the plug I set the mqtt topic to within the mqtt configuration UI on the Tasmota console to  `plug_fillerup`.  The message is then one of `on`, `off`, or `toggle`.
 ## Installing
 It's easiest to follow [one of the many available guides](https://pimylifeup.com/raspberry-pi-mosquitto-mqtt-server/). _Note: I didn't realize the package installer will install mosquitto as a service and start it running: From the article_ `During the installation process, the package manager will automatically configure the Mosquitto server to start on boot.` _I aslo did the systemd service incantations..._
 ## Configuring
