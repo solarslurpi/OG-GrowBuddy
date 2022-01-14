@@ -40,7 +40,7 @@ Includes:
 
     [__The FillerUp Buddy__ in depth](pages/FILLERUP_BUDDY.md)
 
-- The __Flipper Buddy__
+- The __Plug Buddy__ 
     - a smart plug that can be commanded to turn an appliance plugged into it on and off.
 
 - The __Light Buddy__
