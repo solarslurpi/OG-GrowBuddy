@@ -27,7 +27,7 @@ Includes:
 
     [Tasmota learnings](pages/Tasmota_learnings.md)
     
-    - The __Sniffer Buddy__ 
+- The __Sniffer Buddy__ 
 
     Plug it in and __The Sniffer Buddy__:
 
@@ -37,7 +37,9 @@ Includes:
     The readings are published via mqtt.
 
     [__The Sniffer Buddy__ in depth](pages/SNIFFER_BUDDY.md)
-    - The __FillerUp Buddy__
+
+- The __FillerUp Buddy__
+
     Plug it in and the FillerUp Buddy will automatically detect when the water level in the humidifier is low.  It will request a __Plug Buddy__ to turn on the water pump it is attached to whent it is low and turn off the pump when the high water level mark is reached.
 
     [__The FillerUp Buddy__ in depth](pages/FILLERUP_BUDDY.md)
