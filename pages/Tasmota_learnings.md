@@ -48,7 +48,7 @@ Executing `i2cscan` from the console is useful to show you if the i2c sensor is 
 We use the [Tasmota command `switchmode`](https://tasmota.github.io/docs/Buttons-and-Switches/#switchmode) to tell Tasmota to send an mqtt message when there is a change in state for a water level sensor:
 ```
 switchmode1 15
-switchmode
+switchmode2 15
 ```
 
 ##  What I've Learned
