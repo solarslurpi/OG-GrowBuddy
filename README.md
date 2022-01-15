@@ -1,6 +1,8 @@
 # Useful pages
 - [Tasmota learnings](pages/Tasmota_learnings.md)
 - [mqtt on rasp pi learnings](pages/mqtt_learnings.md)
+- [wiring thoughts](WIRING_and_connectors.md)
+- [flashing SONOFF S31 devices for local Tasmota](pages/flashing_SONOFF_S31.md)
 # What is GrowBuddy?
 GrowBuddy:
 ![GrowBuddy](images/GrowBuddy.png)
@@ -41,7 +43,7 @@ Includes:
     [__The FillerUp Buddy__ in depth](pages/FILLERUP_BUDDY.md)
 
 - The __Plug Buddy__ 
-    - a smart plug that can be commanded to turn an appliance plugged into it on and off.
+    - a Sonoff S31 (most likely S31 lite) modified to work within a local Tasmota environment.
 
 - The __Light Buddy__
 TBD: PAR meter perhaps auto adjust of lights.
