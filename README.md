@@ -50,12 +50,8 @@ Includes:
 - The __Light Buddy__
 TBD: PAR meter perhaps auto adjust of lights.
 
-
-
-
-
-
-)
+------------------------------------------------------------------
+EDITING BELOW.....
 
 
 
