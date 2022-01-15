@@ -39,11 +39,19 @@ Also, the sensor's red light is ON when water is detected.
 We tested GPIO pins 33 and 35 with the Tasmota Sensors build.  A bit arbitrary,
 - GPIO33 should be placed for LOW water detection.
 - GPIO35 should be placed for HIGH water detection.
-## Tasmota Commands
+# Prototype
+Here is a front side and backside view of the prototype board:
+
+![front prototype](../images/FILLERUP_PROTO_FRONTSIDE.jpg)
+
+![back prototype](../images/FILLERUP_PROTO_BACKSIDE.jpg)
+
+The front side has to JST XH connectors for the water level sensors to plug into.  The wiring is a tad of a mess.  A PCB would be easy to make...but heck, for this round...
+# Tasmota Commands
 Each of the GPIO pins are mapped to SWITCHes in Tasmota.
 
-![GPIO switch settings Tasmota UI]()
-### Switchmode
+![GPIO switch settings Tasmota UI](../images/fillerup_tasmota_config.jpg)
+## Switchmode
 We use the [Tasmota command `switchmode`](https://tasmota.github.io/docs/Buttons-and-Switches/#switchmode) to tell Tasmota to send an mqtt message when there is a change in state for a water level sensor:
 ```
 switchmode1 15
@@ -51,5 +59,6 @@ switchmode2 15
 ```
 Here is an example of the mqtt message published by the Tasmota firmware:
 ```
+19:09:25.840 RSL: SENSOR = {"Time":"2022-01-15T19:09:25","Switch1":"ON","Switch2":"ON","ESP32":{"Temperature":40.6},"TempUnit":"C"}
 ```
-
+This message tells us that both water level sensors are not detecting water (i.e.: as noted above, "ON" == no water).
