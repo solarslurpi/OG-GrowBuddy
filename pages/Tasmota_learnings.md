@@ -44,6 +44,13 @@ The 99 says to use TimeDST and TimeSTD. Use "time" to check.
 ### i2cscan
 Executing `i2cscan` from the console is useful to show you if the i2c sensor is wired correct.y
 
+### Switchmode
+We use the [Tasmota command `switchmode`](https://tasmota.github.io/docs/Buttons-and-Switches/#switchmode) to tell Tasmota to send an mqtt message when there is a change in state for a water level sensor:
+```
+switchmode1 15
+switchmode
+```
+
 ##  What I've Learned
 - Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  
 

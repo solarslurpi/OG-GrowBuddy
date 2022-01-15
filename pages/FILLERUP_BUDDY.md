@@ -41,3 +41,15 @@ We tested GPIO pins 33 and 35 with the Tasmota Sensors build.  A bit arbitrary,
 - GPIO35 should be placed for HIGH water detection.
 ## Tasmota Commands
 Each of the GPIO pins are mapped to SWITCHes in Tasmota.
+
+![GPIO switch settings Tasmota UI]()
+### Switchmode
+We use the [Tasmota command `switchmode`](https://tasmota.github.io/docs/Buttons-and-Switches/#switchmode) to tell Tasmota to send an mqtt message when there is a change in state for a water level sensor:
+```
+switchmode1 15
+switchmode2 15
+```
+Here is an example of the mqtt message published by the Tasmota firmware:
+```
+```
+
