@@ -69,4 +69,19 @@ The mosquitto log file is found in `/var/log/mosquitto/mosquitto.log`.  It has r
 ## Determining if Device is Sending Messages
 [MQTT Last will and Testament](https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament/) is an extremely useful feature for detecting when devices go bad.
 __By default Tasmota devices set their LWT with a topic of tele/devicename/LWT and a payload of offline when they connect to the broker, and send a message of tele/devicename/LWT and a payload of online as soon as they start.__
-MQTT devices continually ping the broker with a keep alive message, if the broker doesn't get these messages it publishes the LWT message, so if you want to know if your device has gone bad, all you need to do is to subscribe to the LWT topic and wait.
+MQTT devices continually ping the broker with a keep alive message, if the broker doesn't get these messages it publishes the LWT message, so if you want to know if your device has gone bad, all you need to do is to subscribe to the LWT topic and wait. The article, [MQTT Esentials Page 9](https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament/), identifies these states when the mqtt broker publishes the LWT message:
+
+- The broker detects an I/O error or network failure.
+- The client fails to communicate within the defined Keep Alive period.
+- The client does not send a DISCONNECT packet before it closes the network connection.
+- The broker closes the network connection because of a protocol error.
+
+We've gotten OFFLINE messages when:
+- The Tasmota device has been restarted.
+
+
+issuing the `status 6` command on the Tasmota command line informs us on the mqtt settings for this Tasmota device:
+```
+ MQT: stat/snifferbuddy/STATUS6 = {"StatusMQT":{"MqttHost":"growbuddy","MqttPort":1883,"MqttClientMask":"DVES_%06X","MqttClient":"DVES_25EEA5","MqttUser":"DVES_USER","MqttCount":1,"MAX_PACKET_SIZE":1200,"KEEPALIVE":30,"SOCKET_TIMEOUT":4}}
+ ```
+The mqtt info lets us know the mqtt keep alive time is 30 seconds.
