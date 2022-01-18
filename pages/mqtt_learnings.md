@@ -66,4 +66,7 @@ The mosquitto log file is found in `/var/log/mosquitto/mosquitto.log`.  It has r
 1639229562: Opening websockets listen socket on port 9000.
 1639229562: mosquitto version 2.0.11 running
 ```
-
+## Determining if Device is Sending Messages
+[MQTT Last will and Testament](https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament/) is an extremely useful feature for detecting when devices go bad.
+__By default Tasmota devices set their LWT with a topic of tele/devicename/LWT and a payload of offline when they connect to the broker, and send a message of tele/devicename/LWT and a payload of online as soon as they start.__
+MQTT devices continually ping the broker with a keep alive message, if the broker doesn't get these messages it publishes the LWT message, so if you want to know if your device has gone bad, all you need to do is to subscribe to the LWT topic and wait.
