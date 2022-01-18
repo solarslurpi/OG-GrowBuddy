@@ -23,6 +23,7 @@ Includes:
     - Records the sensor readings into influxdb.
     - Understands best practices on humidity, light for optimum grow based on the growth stage the plants are in.d
 - Buddies Built on Tasmota
+
     [Tasmota](https://tasmota.github.io/docs/) simplifies setting up home automations because it is fairly straightforward to get a sensor, switch, relay running Tasmota to be controlled.  It assumes an ESP286 or ESP32 CPU.  Once installed, you connect it to your home's wifi.  Once configured, mqtt messages can be published.
 
     [Tasmota learnings](pages/Tasmota_learnings.md)
@@ -51,53 +52,17 @@ Includes:
 TBD: PAR meter perhaps auto adjust of lights.
 
 ------------------------------------------------------------------
-EDITING BELOW.....
-
-
-
-## CO2 Actuator
-A CO2 Actuator built on an ESP32 running Tasmota that subscribes to an mqtt message that tells it how long to turn the CO2 cannister's solenoid valve on.  
-## Humidifier Water Level Adjuster
-A Water Level sensor that detects high and low water conditions and will pump water into the humidifier's water reservoir when a low water condition is detected.
-
-
-## node-red Management
-node-red is used to manage everything.  More on that below.
+EDITING BELOW....
+# The Director
+node-red is used to manage everything.  The flows get readings from the Sniffer and FIllerUp Buddies.  Then it uses Plug Buddies to adjust the amount of CO2 and humidity.
 
  _NOTE: I found node-red to be a simple and powerful way to code up all incoming/outgoing activities as well as provide "smarts" such as given a grow state (e.g. Vegetative versus Flowering), how much CO2 to add and what humidity level should the grow tent space be at._
+ 
+ [__The Director__ in depth](pages/DIRECTOR.md)
 
 
-Automatic adjustment of CO2 using a solenoid valve attached to a CO2 cannister
-monitors and adjusts the CO2 and humidity level within an indoor grow tent.  The humidity level is adjusted through monitoring and adjusting the VPD level.
-- saves readings into a database and plots the values for a comprehensive view of the environmental factors.
 
-My goal for Grow Buddy is to be the little buddy that does the tedious tasks so that I can enjoy other aspects of growing indoor plants.  With that said, when I am home I will always check up on my plants daily.    The jobs GrowBuddy handles for me include:
-## GrowBuddy Jobs
-- __Adjusting the CO2 level__ to the ideal level based on lights on/off.
-- __Adjusting the humidity level__ to the ideal VPD level.
-- __Refilling the humidifier__ when the water is low.
 
-## Jobs GrowBuddy Does Not Do
-- __Adjust the temperature__ I don't adjust the temperature because where I live the temperature stays within a reasonable level for the plants to thrive.
-
-- __Monitor and Adjust the Air Flow__ I provide air flow by linking several PC fans together.  The fans run 7/24.
-
-- __Adjust the PPFD Level__ Light is provided by an LED setup.  Lighting is turned off/on for the correct photoperiod using a Kasa smart plug.  The PPFD value is hand adjusted using a PAR meter.  Perhaps in the future I could automate the distance the lights are from the plants based on PAR readings.
-
-I am working on extending GrowBuddy to include __(Doctor GrowBuddy)__.  Doctor GrowBuddy uses robotics, a camera, and machine learning to aid in plant health diagnosis.
-
-This document focuses on the #1 job: automating the obvious (CO2 enrichment level and humidity based on growth stage).
-# GrowBuddy Overview
-GrowBuddy:
-- Adjusts the CO2 level.
-- Adjusts the humidity level.
-- Refills the container holding water for the humidifier.
-
-GrowBuddy does not: 
-- Automate air circulation and ventilation.  I haven't seen a need to.  Rather, I add fans to circulate the air around the plant leaves.  For ventilation, I provide input and exhaust fans.
-- Adjust the temperature.  The grow tent temperature typically ranges between 75 and 80 degrees without adjustment.
-- Automate the PPFD value for the canopy.  I do this by adjusting the lights higher or lower.
-- Automate irrigation.  Rather I choose to use the Blumat system of watering.
 
 # Setpoints
 
