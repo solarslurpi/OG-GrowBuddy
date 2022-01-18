@@ -78,6 +78,7 @@ MQTT devices continually ping the broker with a keep alive message, if the broke
 
 We've gotten OFFLINE messages when:
 - The Tasmota device has been restarted.
+- The Tasmota device has been unplugged longer than the keep alive time.
 
 
 issuing the `status 6` command on the Tasmota command line informs us on the mqtt settings for this Tasmota device:
