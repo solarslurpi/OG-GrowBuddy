@@ -4,3 +4,17 @@ The node-red flow responsible for determining when the LED lights go on/off send
 Error: Invalid login: 534-5.7.9 Application-specific password required. Learn more at
 534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor f12sm11906507pfe.204 - gsmtp
 ```
+# Installing Grafana
+The last time I tried to install Grafana on Raspberry Pi (Buster) I got:
+```
+E: Package 'grafana' has no installation candidate
+```
+To get past this:
+```
+sudo apt-get update --fix-missing
+```
+Then install Grafana with:
+```
+sudo apt install grafana
+```
+
