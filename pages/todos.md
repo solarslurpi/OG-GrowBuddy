@@ -1,0 +1,1 @@
+- [ ] After plugging in Sniffer Buddy, the analog reading of light level is available.  However, Sniffer Buddy requires a restart of Tasmota in order for the SCD30 readings to work.

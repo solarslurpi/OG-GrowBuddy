@@ -1,4 +1,5 @@
 # Useful pages
+- [ToDos](pages/todos.md)
 - [Tasmota learnings](pages/Tasmota_learnings.md)
 - [mqtt on rasp pi learnings](pages/mqtt_learnings.md)
 - [wiring thoughts](WIRING_and_connectors.md)
