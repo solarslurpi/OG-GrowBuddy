@@ -49,8 +49,13 @@ Includes:
 - The __Plug Buddy__ 
     - a Sonoff S31 (most likely S31 lite) modified to work within a local Tasmota environment.
 
-- The __Light Buddy__
-TBD: PAR meter perhaps auto adjust of lights.
+- The __PAR Buddy__
+
+    I'm exploring using an as7341 as a PAR meter. Based on what I read in the article, [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://pubmed.ncbi.nlm.nih.gov/34068029/), I thought I'd try using machine learning to determine the coefficients.
+
+    The __Par Buddy__ in depth
+
+
 
 ------------------------------------------------------------------
 EDITING BELOW....

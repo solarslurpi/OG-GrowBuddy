@@ -1,0 +1,7 @@
+# System
+
+# Hardware
+- [Adafruit's AS7341 breakout board](https://www.adafruit.com/product/4698)
+- [Adafruit's QT Py ESP32-S2](https://www.adafruit.com/product/5325)
+# Software
+The Mu editor was used to program the ESP32.
