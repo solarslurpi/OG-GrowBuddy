@@ -22,8 +22,9 @@ class PAR:
         print("Connecting to %s"%secrets["ssid"])
         wifi.radio.connect(secrets["ssid"], secrets["password"])
         print("Connected to %s!"%secrets["ssid"])
-        # connect to mqtt broker
         # Create a socket pool
+        pool = socketpool.SocketPool(wifi.radio)
+        # connect to mqtt broker
         mqtt_client = MQTT.MQTT(
             broker=secrets["broker"],
             port=secrets["port"],
