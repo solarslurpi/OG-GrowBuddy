@@ -6,7 +6,7 @@ import ssl
 class PAR:
     def __init__(self):
         pass
-    def _connect_mqtt(self):
+    def _connect_mqtt(self,mqtt_client, userdata, flags, rc):
         # This function will be called when the mqtt_client is connected
         # successfully to the broker.
         print("Connected to MQTT Broker!")
@@ -32,7 +32,7 @@ class PAR:
             ssl_context=ssl.create_default_context(),
             )
         # Connect callback handlers to mqtt_client
-        mqtt_client.on_connect = _connect_mqtt
+        mqtt_client.on_connect = self._connect_mqtt
         print("Attempting to connect to %s" % mqtt_client.broker)
         mqtt_client.connect()
 
