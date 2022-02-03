@@ -35,4 +35,5 @@ class PAR:
         mqtt_client.on_connect = self._connect_mqtt
         print("Attempting to connect to %s" % mqtt_client.broker)
         mqtt_client.connect()
+    def take_reading(self):
 
