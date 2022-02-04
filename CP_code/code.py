@@ -3,6 +3,7 @@ import digitalio
 import time
 from adafruit_debouncer import Debouncer
 from PAR_LIB import PAR
+import neopixel
 
 (NOT_CONNECTED,CONNECTED) = range(2)
 
@@ -19,13 +20,21 @@ def connect_callback():
     print("connect_callback")
     global state
     state = CONNECTED
+    pixels.fill((0, 0, 255))
+    time.sleep(1)
+    pixels.fill((0, 0, 0))
+    #time.sleep(0.5)
 def reading_received_callback():
     print("reading received")
+    pixels.fill((0, 255, 0))
+    time.sleep(1)
+    pixels.fill((0, 0, 0))
 
 # We're starting out.  The first thing we need to do is connect to wifi and the
 # mqtt broker.  We use the global state variable to track where we are.
 state = NOT_CONNECTED
 button = button_setup()
+pixels = neopixel.NeoPixel(board.NEOPIXEL, 1)
 p = PAR()
 p.connect(connect_callback)
 # Once connected, the state will be CONNECTED, since this was set in the callback.
@@ -38,4 +47,8 @@ while True:
         if button.rose:
             print("button pressed!")
             channel_samples = p.take_reading()
+            pixels.fill((255, 255, 0))
+            time.sleep(1)
+            pixels.fill((0, 0, 0))
             p.send_reading(channel_samples,reading_received_callback)
+
