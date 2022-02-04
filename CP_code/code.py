@@ -29,11 +29,13 @@ button = button_setup()
 p = PAR()
 p.connect(connect_callback)
 # Once connected, the state will be CONNECTED, since this was set in the callback.
+print("waiting for button press to collect a sample.")
 while True:
     time.sleep(0.1)
     if (state == CONNECTED):
         # If the button is pressed, collect a sample_rate
         button.update()
         if button.rose:
+            print("button pressed!")
             channel_samples = p.take_reading()
             p.send_reading(channel_samples,reading_received_callback)
