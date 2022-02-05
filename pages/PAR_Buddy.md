@@ -46,6 +46,7 @@ def initialize(self):
 ```
 ### Observation
 The LED on the AS7341 BoB maintained its eerie green LED glow which I would think would alter the channel readings by including this light source.
+
 ![eerie green glow](../images/as7341_green_glow.jpeg)
 ### Results
 ```
@@ -56,4 +57,7 @@ The LED on the AS7341 BoB maintained its eerie green LED glow which I would thin
 12124,53645,49194,65535,65535,65535,65535,65535
 9827,43549,40641,65535,65535,65535,65535,65535
 ```
+Many of the samples maxed out the value.  So there are two things I'll fix for the next test:
+- Turn the green LED off.
+- Change the interval time so the readings aren't maxed out due to oversaturation.
 
