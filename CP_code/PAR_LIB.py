@@ -4,7 +4,7 @@ import wifi
 import socketpool
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 import ssl
-from adafruit_as7341 import AS7341
+from adafruit_as7341 import AS7341, Gain
 import json
 
 
@@ -13,8 +13,13 @@ class PAR:
     def __init__(self):
         i2c = busio.I2C(board.SCL1,board.SDA1)  # uses board.SCL and board.SDA
         self.sensor = AS7341(i2c)
+        # set the gain to 64 (default is 128)
+        self.sensor.gain = Gain.GAIN_4X
+        self.atime = 59
+        self.astep = 599
         self.bConnected = False
         self.reading_made_it_mqtt_sub = "PAR/READING/OK"
+        self.reading_mqtt_pub = "PAR/READING"
         print(type(self.sensor))
     def _connect_mqtt(self,mqtt_client, userdata, flags, rc):
         # This function will be called when the mqtt_client is connected
@@ -63,6 +68,6 @@ class PAR:
             raise Exception("Please connect first")
         readingJson = json.dumps(readings)
         self.mqtt_client.loop()
-        self.mqtt_client.publish("PAR/reading",readingJson)
+        self.mqtt_client.publish(self.reading_mqtt_pub,readingJson)
 
         print("readings sent!")
