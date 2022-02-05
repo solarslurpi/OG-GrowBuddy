@@ -98,3 +98,10 @@ sensor.atime = 59 sensor.astep = 599
 ###### Gain
 The default gain is 128x.  The article set the gain for the visible channels to a gain of 4x.
 sensor.gain = sensor.gain.GAIN_4X
+### New Results
+New results are within ranges that can be sampled:
+```
+3152,17180,6920,18764,28643,26845,21375,11130
+4070,21699,8381,24061,37087,34443,26972,13683
+8259,38644,13648,46921,52489,48042,36851,16561
+```
