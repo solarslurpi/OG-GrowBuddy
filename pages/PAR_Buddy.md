@@ -45,8 +45,8 @@ def initialize(self):
     self.gain = Gain.GAIN_128X  # pylint:disable=no-member
 ```
 ### Observation
-The LED on the AS7341 BoB maintained its eery green LED glow which I would think would alter the channel readings by including this light source.
-![eery green glow](../images/as7341_green_glow.jpeg)
+The LED on the AS7341 BoB maintained its eerie green LED glow which I would think would alter the channel readings by including this light source.
+![eerie green glow](../images/as7341_green_glow.jpeg)
 ### Results
 ```
 2304,10226,10187,16548,24773,32891,35828,18372
