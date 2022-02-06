@@ -10,10 +10,10 @@ from secrets import secrets
 
 _READING_MADE_IT = "PAR/READING_OK"
 _TAKE_READING = "PAR/READING_TAKE"
-_SEND_READING = "PAR/READING_SEND"
+_SEND_READING = "PAR/READING"
 
 class PAR:
-    def __init__(self,reading_received_callback=None):
+    def __init__(self):
 
         i2c = busio.I2C(board.SCL1,board.SDA1)  # uses board.SCL and board.SDA
         self.sensor = AS7341(i2c)
@@ -22,26 +22,24 @@ class PAR:
         self.atime = 59
         self.astep = 599
         self.bConnected = False
-        self.reading_received_callback = reading_received_callback
     def _on_connect_mqtt(self,mqtt_client, userdata, flags, rc):
         # This function will be called when the mqtt_client is connected
         # successfully to the broker.
 
         # Subscribe to topics.
-        self.mqtt_client.subscribe(_READING_MADE_IT)
+        # Freezes pretty quick when receive a message that the reading made it...hmm...
+        # self.mqtt_client.subscribe(_READING_MADE_IT)
         self.mqtt_client.subscribe(_TAKE_READING)
         self.bConnected = True
         print("Connected to MQTT Broker!")
         print("Flags: {0}\n RC: {1}".format(flags, rc))
 
     def _on_message_mqtt(self,mqtt_client,topic,message):
+        self.mqtt_client.loop()
         print("New message on topic {0}: {1}".format(topic, message))
-        if topic == _READING_MADE_IT:
-            self.send_reading_callback()
         # We've been asked to take a reading by an mqtt client.  This allows any
         # device to take a reading if they have an mqtt client.
         if topic == _TAKE_READING:
-            self.mqtt_client.loop()
             channel_samples = self.take_reading()
             self.send_reading(channel_samples,self.reading_received_callback)    
                  
@@ -67,6 +65,7 @@ class PAR:
             )
         # Connect callback handlers to mqtt_client
         self.mqtt_client.on_connect = self._on_connect_mqtt
+        # Freezes pretty quickly if receive messages...
         self.mqtt_client.on_message = self._on_message_mqtt
         print("Attempting to connect to %s" % self.mqtt_client.broker)
         self.mqtt_client.connect()
@@ -104,7 +103,7 @@ class PAR:
         sensor_channels = self.sensor.all_channels
         return [ sensor_channels[i] for i in range(8)]
 
-    def send_reading(self,reading,callback_function=None):
+    def send_reading(self,reading):
         """Send the reading to the nodered flow.  The nodered flow will put
            the reading into a csv file on the Raspberry Pi. 
 
@@ -116,7 +115,6 @@ class PAR:
         Raises:
             Exception: If it is detected that there is no connection to the mqtt broker.
         """
-        self.send_reading_callback = callback_function
         if (not self.bConnected):
             raise Exception("Please connect first")
         # Convert to Json formatted string to make it easy for the nodered node to
