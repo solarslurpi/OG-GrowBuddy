@@ -1,0 +1,19 @@
+# PAR_BUDDYHANDLER.service
+#
+# found in /lib/systemd/system/PAR_BUDDY_HANDLER.service
+
+# after saving, enable with the command:
+# sudo systemctl enable PAR_BUDDY_HANDLER.service
+
+# You can test if a service is running with:
+# sudo systemctl is-active PAR_BUDDY_HANDLER.service
+[Unit]
+Description=PAR BUDDY HANDLER mqtt Script Service
+After=mosquitto.service
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3  /home/pi/PAR_BUDDY/PAR_BUDDY_HANDLER/PAR_BUDDY_HANDLER.py
+Restart=always
+[Install]
+WantedBy=multi-user.target
