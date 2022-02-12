@@ -19,6 +19,12 @@ The current version is an original prototype.  A successful completion will be a
 - Sending the list of 9 elements (PPFD reading from mq-500 and 8 channels from AS7341) as an mqtt message, `topic=PAR/READING_SAVE`,`message=<readings list as a JSON string>.
 4. When the Raspberry Pi sees there is a message with the topic `PAR/READING_SAVE` available, it takes the message payload, transforms it into a CSV string and then writes it to a readings.csv file.  
 5. The Rasp Pi then sends a message with the topic `PAR/READING_OK` with the message payload set to the values in the CSV string. The readings can then be verified as read by subscribing to the `PAR/READING_OK` message.
+## Store Readings.csv on GitHub
+Before taking another round of readings, the `readings.csv` file is copied from the Raspberry Pi into [a directory of readings](https://github.com/solarslurpi/GrowBuddy/tree/main/data).  The filenamnes are named `white` or `burple` plus `<the date recorded>`.csv
+
+For example, `white_02092020.csv` means the readings in this file were taken under the "white" LEDs on February 9th, 2022.
+# Model
+
 
 
 
