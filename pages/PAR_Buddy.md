@@ -1,10 +1,22 @@
 # What is PAR Buddy
 PAR Buddy is a DIY PPFD sensor with "dreams" of being "good enough" for home growers to use as a guide for adjusting the height of indoor LEDs during a grow season.
 
+![PAR Buddy headshot](../images/PARBuddy_headshot.jpg)
 
-It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed enclosure.  Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, __can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's EXPLORE!__
-# Current Version
-The current version is an original prototype.  A successful completion will be a working prototype that can be used to evaluate the efficacy of PAR Buddy as a PPPFD meter for my indoor grows.
+It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed enclosure.  
+
+![Pieces of PAR Buddy](../images/PARBuddy_open.jpg)
+
+Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, __can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's EXPLORE!__
+# Sacrificial Draft Prototype
+The current version of the prototype is 0.00001A - the first...sacrificial draft.
+## Hardware
+- A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I don't know what words to Google...thus I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
+- [Adafruit's AS7341 Breakout Board (BoB)](https://www.adafruit.com/product/4698)
+- [Adafruit's QT Py ESP32-S2 ](https://www.adafruit.com/product/5325)
+- [A Stemma QT cable](https://www.adafruit.com/product/4399) connecting the AS7341 to the QT PY.
+- A Raspberry Pi 3+
+## Software
 # Taking Samples
 ![PAR Reading test setup](https://docs.google.com/drawings/d/e/2PACX-1vT2_8f2wmohBskiDfQnLURVa0tcdJS2g_z64sPiCDXP1SivaWtmZ2_UgdJfDX8K_u-AdrUW4baJTv5w/pub?w=720&h=450)
 
@@ -19,13 +31,24 @@ The current version is an original prototype.  A successful completion will be a
 - Sending the list of 9 elements (PPFD reading from mq-500 and 8 channels from AS7341) as an mqtt message, `topic=PAR/READING_SAVE`,`message=<readings list as a JSON string>.
 4. When the Raspberry Pi sees there is a message with the topic `PAR/READING_SAVE` available, it takes the message payload, transforms it into a CSV string, and then writes it to a readings.csv file.  
 5. The Rasp Pi then sends a message with the topic `PAR/READING_OK` with the message payload set to the values in the CSV string. The readings can then be verified as read by subscribing to the `PAR/READING_OK` message.
+
 ## Store Readings.csv on GitHub
-Before taking another round of readings, the `readings.csv` file is copied from the Raspberry Pi into [a directory of readings](https://github.com/solarslurpi/GrowBuddy/tree/main/data).  The filenamnes are named `white` or `burple` plus `<the date recorded>`.csv
+Before taking another round of readings, the `readings.csv` file is copied from the Raspberry Pi into [a directory of readings](https://github.com/solarslurpi/GrowBuddy/tree/main/data).  The filenamnes are named `white` or `burple` plus `<the date recorded>`.csv.  All contents of the `readings.csv` file are deleted.
 
 For example, `white_02092020.csv` means the readings in this file were taken under the "white" LEDs on February 9th, 2022.
-# Model
+# Calibration Model
+The "BIG JOB" we have is to figure out the (numerical) relationships between the readings from the AS7341 and the PPFD value of the mq-500.  Is this relationship strong enough that we can understand what we need to "plug in" when we take a reading with the AS7341 to get to a PPFD value that is not good enough for the professional grower, but good enough for a home grower who needs it mostly to adjust the distance the LEDs are from the plant's leaves.
 
+Similar to how the approach used to calculate the PPFD using an AS7341 sensor in [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), we'll use a multiple linear regression model.  
 
+Based on what I know, we can then build a model based on a Multiple Linear Regression approach:
+$$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
+
+Or using machine learning
+
+![ml](../images/ml.jpg)
+
+oohhh...how weighty!
 
 
 # System
