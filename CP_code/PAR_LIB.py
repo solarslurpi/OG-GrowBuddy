@@ -10,7 +10,7 @@ from secrets import secrets
 
 _READING_MADE_IT = "PAR/READING_OK"
 _TAKE_READING = "PAR/READING_TAKE"
-_SEND_READING = "PAR/READING"
+_SEND_READING = "PAR/READING_SAVE"
 
 class PAR:
     def __init__(self):
@@ -22,6 +22,9 @@ class PAR:
         self.atime = 59
         self.astep = 599
         self.bConnected = False
+    def _on_disconnect_mqtt(self,mqtt_clientclient, userdata,rc=0):
+        print("DisConnected result code "+str(rc))
+
     def _on_connect_mqtt(self,mqtt_client, userdata, flags, rc):
         # This function will be called when the mqtt_client is connected
         # successfully to the broker.
@@ -41,8 +44,11 @@ class PAR:
         # device to take a reading if they have an mqtt client.
         if topic == _TAKE_READING:
             channel_samples = self.take_reading()
-            self.send_reading(channel_samples,self.reading_received_callback)    
-                 
+            PPFD = int(message)
+            channel_samples.insert(0,PPFD)
+            print(channel_samples)
+            self.send_reading(channel_samples)
+
     def _connect_wifi(self):
         """      Internal function to connect to home's wifi.
         """
@@ -67,9 +73,11 @@ class PAR:
         self.mqtt_client.on_connect = self._on_connect_mqtt
         # Freezes pretty quickly if receive messages...
         self.mqtt_client.on_message = self._on_message_mqtt
+        self.mqtt_client.on_disconnect = self._on_disconnect_mqtt
         print("Attempting to connect to %s" % self.mqtt_client.broker)
         self.mqtt_client.connect()
-               
+        self.mqtt_client.loop()
+
 
     def connect(self,callback_function=None):
         """Setup and connect to wifi and mqtt.
@@ -82,7 +90,7 @@ class PAR:
         self._connect_mqtt()
         print("connected to wifi and mqtt")
         if (callback_function is not None):
-            callback_function()
+            callback_function(self.mqtt_client)
 
 
     def take_reading(self):
@@ -104,12 +112,11 @@ class PAR:
         return [ sensor_channels[i] for i in range(8)]
 
     def send_reading(self,reading):
-        """Send the reading to the nodered flow.  The nodered flow will put
-           the reading into a csv file on the Raspberry Pi. 
+        """Send the reading to the growbuddy Rasp Pi server to be saved in a csv file.
 
         Args:
-            reading (list): List of 8 readings as described under the take_reading
-            function.
+            reading (list): List of 9 readings.  The first reading is the PPFD value recorded from the
+            mq-500 PAR meter.  The 8 readings are measurements in the PAR light spectrum from the AS7341
             callback_function (ptr to a fucntion): [description]
 
         Raises:

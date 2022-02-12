@@ -5,9 +5,18 @@ PAR Buddy is a DIY PPFD sensor with "dreams" of being "good enough" for home gro
 as useful as an [Apogee MQ-500](https://www.apogeeinstruments.com/full-spectrum-quantum-par-meters-and-sensors/).  It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed enclosure.  Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's find out!
 # Current Version
 The current version is an original prototype.  A successful completion will be a working prototype that can be used to evaluate the efficacy of PAR Buddy as a PPPFD meter for my indoor grows.
-# How It Works
+# Taking Samples
 ![PAR Reading test setup](https://docs.google.com/drawings/d/e/2PACX-1vT2_8f2wmohBskiDfQnLURVa0tcdJS2g_z64sPiCDXP1SivaWtmZ2_UgdJfDX8K_u-AdrUW4baJTv5w/pub?w=720&h=450)
 
+1. PAR Buddy and the mq-500 are placed side by side at different positions in the x,y,z planes.  Two grow lights are used for testing:
+    - [MAXSISUN PB1000 Pro Grow Light](https://amzn.to/3uKqPy5) (the "white" LEDs)
+    - [Advanced Platinum Series P300 300w](https://amzn.to/3sBnTRR) (the "burple" LEDs)
+2. A reading flow is started by sending an mqtt message, `topic=PAR\READING_TAKE`, `message = PPFD reading from the mq-500 using the [EasyMQTT app](https://www.easymqtt.app/) from an iPhone.  In the example, the PPFD reading on the mq-500 was 250 μmol/m2/s.
+3. The Circuit Python code running on the PAR Buddy ([code.py](../CP_code/code.py) and [PAR_LIB.py](../CP_code/PAR_LIB.py))  "hears" the topic and responds by:
+- Taking readings of the AS7341's 8 channels that are in the visible light (i.e.: correspond to the PAR spectrum).
+- Putting the readings in a Python list datatype.
+- Inserting the PPFD reading that came as the message a the first element in the list.
+- Sends the list of 9 elements (PPFD reading from mq-500 and 8 channels from AS7341) as an mqtt message, `topic=PAR/READING_SAVE`,`message=
 
 
 
