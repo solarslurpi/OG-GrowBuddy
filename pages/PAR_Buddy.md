@@ -2,7 +2,7 @@
 PAR Buddy is a DIY PPFD sensor with "dreams" of being "good enough" for home growers to use as a guide for adjusting the height of indoor LEDs during a grow season.
 
 
-as useful as an [Apogee MQ-500](https://www.apogeeinstruments.com/full-spectrum-quantum-par-meters-and-sensors/).  It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed enclosure.  Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's find out!
+It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed enclosure.  Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, __can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's EXPLORE!__
 # Current Version
 The current version is an original prototype.  A successful completion will be a working prototype that can be used to evaluate the efficacy of PAR Buddy as a PPPFD meter for my indoor grows.
 # Taking Samples
