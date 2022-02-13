@@ -37,7 +37,14 @@ Before taking another round of readings, the `readings.csv` file is copied from 
 
 For example, `white_02092020.csv` means the readings in this file were taken under the "white" LEDs on February 9th, 2022.
 # Calibration Model
-The "BIG JOB" we have is to figure out the (numerical) relationships between the readings from the AS7341 and the PPFD value of the mq-500.  Is this relationship strong enough that we can understand what we need to "plug in" when we take a reading with the AS7341 to get to a PPFD value that is not good enough for the professional grower, but good enough for a home grower who needs it mostly to adjust the distance the LEDs are from the plant's leaves.
+The "BIG JOB" we have is to figure out the (numerical) relationships between the readings from the AS7341 and the PPFD value of the mq-500.  __Is there a strong enough relationship between the light spectrum channel readings from the AS7341 and the mq-500?__  To find out we'll look at it from two ways:
+- multiple linear regression
+- machine learning
+
+Both will be evaluated using Jupyter notebooks.
+## Multiple Linear Regression  
+
+strong enough that we can understand what we need to "plug in" when we take a reading with the AS7341 to get to a PPFD value that is not good enough for the professional grower, but good enough for a home grower who needs it mostly to adjust the distance the LEDs are from the plant's leaves.
 
 Similar to how the approach used to calculate the PPFD using an AS7341 sensor in [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), we'll use a multiple linear regression model.  
 
