@@ -43,10 +43,18 @@ The "BIG JOB" we have is to figure out the (numerical) relationships between the
 
 Both will be evaluated using Jupyter notebooks.
 ## Multiple Linear Regression  
+ A Multiple Linear Regression approach solves for the y-intercept and the 8 coefficients:
+$$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
+
+This is the approach taken in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration)
+
+
+
+----------
 
 strong enough that we can understand what we need to "plug in" when we take a reading with the AS7341 to get to a PPFD value that is not good enough for the professional grower, but good enough for a home grower who needs it mostly to adjust the distance the LEDs are from the plant's leaves.
 
-Similar to how the approach used to calculate the PPFD using an AS7341 sensor in [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), we'll use a multiple linear regression model.  
+Similar to how the approach used to calculate the PPFD using an AS7341 sensor in, we'll use a multiple linear regression model.  
 
 Based on what I know, we can then build a model based on a Multiple Linear Regression approach:
 $$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
