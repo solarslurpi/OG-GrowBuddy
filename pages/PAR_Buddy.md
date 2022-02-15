@@ -21,11 +21,12 @@ The conclusions are contained within these two notebooks.  I list below a summar
 
 ## Summary of Current Thoughts
 - PAR Buddy can be used for "good enough" PAR readings like those needed when adjusting the LED lights from the canopy within an indoor grow.  It is best calibrated using the y-intercept and correlation values calculated by the mlr math using samples from the white and burple readings. Even more ideal, calibration samples come from the same LED source that will be used when using PAR Buddy.  Although, the burple readings don't seem to detract too much from the relationship between the mq-500's PPFD readings and the 8 channels read from the AS7341.
-- PAR Buddy cannot be calibrated to work with the burple_red setting of the LED settings.  I feel this because the spectrum channels read by the AS7341 lack channels in the red light.
+- PAR Buddy cannot be calibrated to work with the burple_red setting of the LED settings.  I feel this is because the spectrum channels read by the AS7341 lack channels in the red light.
 - MLR performs slightly better than ML.  I believe this is most likely due to my lack of ability building machine learning models.  I slapped together Dense layers with minimum knowledge of what I was doing.  Certainly an informed model would perform better.  
 
 ## Multiple Linear Regression
 - [PAR Buddy mlr notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
+
 As highlighted in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), a strong contender for determining the relationship between PAR Buddy readings and an Apogee mq-500 is Multiple Linear Regression (MLR).  This is the approach taken in the [PAR Buddy mlr jupyter notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb).  The conclusions section noted:
 
 |dataframe|# Samples|RMSE|r2|
