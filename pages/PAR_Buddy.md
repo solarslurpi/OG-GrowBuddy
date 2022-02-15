@@ -43,10 +43,9 @@ My (possibly naive) observation/thoughts:
 - While the readings dataframe showed a high r2 of 94%, I feel most comfortable calibrating each LED system with only data taken from that LED system.
 ## Machine Learning
 The ml approach is covered in the [PAR_Buddy_ml colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb)
- Method | RMSE | r2|
+ Method | # Samples | RMSE | r2|
 |------|-----|----|
-| MLR | 16.9 | 0.996 |
-| ML | 125.5 | 0.951 |
+| ML |117| 125.5 | 0.951 |
 
 - "burple_red" samples were not used.  I decided not to include them because the visible spectrum channels recorded by the AS7341 is focused more on blue - orange then on spectrum in the red light.
 - Multiple Linear Regression performed slightly better than machine learning.  Certainly, the machine learning model could be improved since the model I used lacks understanding of what the heck a good model is.
