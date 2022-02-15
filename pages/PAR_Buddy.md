@@ -47,7 +47,22 @@ The protagonist in this story is [Adafruit's AS7341 breakout board (BoB)](https:
 
 and [Adafruit's Circuit Python AS7341 library](https://github.com/adafruit/Adafruit_CircuitPython_AS7341/blob/main/adafruit_as7341.py).
 
-#### Default Settings
+I combined this powerful BoB with:
+To capture color channel values, I built a prototype consisting of:
+- [Adafruit's QT Py ESP32-S2](https://www.adafruit.com/product/5325)
+- a Ping Pong ball that acts as a diffuser.
+- a 3D printed holder for the ping pong ball and the AS7341 BoB
+- CircuitPython code loaded onto the QT PY:
+    - [code.py](../CP_code/code.py)
+    - [PAR_LIB.py](../CP_code/PAR_LIB.py)
+- mqtt broker running on a Raspberry Pi.  More details on how mqtt is used in the [Taking Samples section](#test)
+- A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I don't know what words to Google...thus I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
+- [Adafruit's AS7341 Breakout Board (BoB)](https://www.adafruit.com/product/4698)
+- [Adafruit's QT Py ESP32-S2 ](https://www.adafruit.com/product/5325)
+- [A Stemma QT cable](https://www.adafruit.com/product/4399) connecting the AS7341 to the QT PY.
+- A Raspberry Pi 3+
+
+#### Changes to Default Settings
 Default sampling settings in Adafruit's AS7341 library set:
 ```
 def initialize(self):
@@ -90,10 +105,6 @@ self.sensor.gain = Gain.GAIN_4X
 self.atime = 59
 self.astep = 599
 ```
-
-
-
-
 #### Green Glow
 The AS7341 BoB has a green LED that lights up when it receives power.  The good news is it creates this eerie green orb which looks pretty awesome.
 
@@ -101,22 +112,9 @@ The AS7341 BoB has a green LED that lights up when it receives power.  The good 
 
 The bad news is the light has the potential to affect the readings.  Because of this, I put a piece of electrician's tape over the LED to mask the light.  I guess I could have just desoldered the LED but I feel covering the green glow works well.
 
-To capture color channel values, I built a prototype consisting of:
-- [Adafruit's AS7341 breakout board (BoB)](https://www.adafruit.com/product/4698)
-- [Adafruit's QT Py ESP32-S2](https://www.adafruit.com/product/5325)
-- a Ping Pong ball that acts as a diffuser.
-- a 3D printed holder for the ping pong ball and the AS7341 BoB
-- CircuitPython code loaded onto the QT PY:
-    - [code.py](../CP_code/code.py)
-    - [PAR_LIB.py](../CP_code/PAR_LIB.py)
-- mqtt broker running on a Raspberry Pi.  The CP code in code.py publishes the channel readings to the mqtt broker which is picked up by a nodered flow.  The nodered flow stores the reading as a CSV line within a file on the Raspberry Pi.
-- A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I don't know what words to Google...thus I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
-- [Adafruit's AS7341 Breakout Board (BoB)](https://www.adafruit.com/product/4698)
-- [Adafruit's QT Py ESP32-S2 ](https://www.adafruit.com/product/5325)
-- [A Stemma QT cable](https://www.adafruit.com/product/4399) connecting the AS7341 to the QT PY.
-- A Raspberry Pi 3+
-## Software
-# Taking Samples
+
+## Software<a name="test"></a>
+# Taking Samples<a name="taking_samples"></a>
 ![PAR Reading test setup](https://docs.google.com/drawings/d/e/2PACX-1vT2_8f2wmohBskiDfQnLURVa0tcdJS2g_z64sPiCDXP1SivaWtmZ2_UgdJfDX8K_u-AdrUW4baJTv5w/pub?w=720&h=450)
 
 1. PAR Buddy and the mq-500 are placed side by side at different positions in the x,y,z planes.  Two grow lights are used for testing:
