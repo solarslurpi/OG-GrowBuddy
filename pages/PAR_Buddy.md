@@ -55,7 +55,7 @@ To capture color channel values, I built a prototype consisting of:
 - CircuitPython code loaded onto the QT PY:
     - [code.py](../CP_code/code.py)
     - [PAR_LIB.py](../CP_code/PAR_LIB.py)
-- mqtt broker running on a Raspberry Pi.  More details on how mqtt is used in the [Taking Samples section](#test)
+- mqtt broker running on a Raspberry Pi.  More details on how mqtt is used in the [Taking Samples section](#taking_samples)
 - A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I don't know what words to Google...thus I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
 - [Adafruit's AS7341 Breakout Board (BoB)](https://www.adafruit.com/product/4698)
 - [Adafruit's QT Py ESP32-S2 ](https://www.adafruit.com/product/5325)
@@ -113,7 +113,7 @@ The AS7341 BoB has a green LED that lights up when it receives power.  The good 
 The bad news is the light has the potential to affect the readings.  Because of this, I put a piece of electrician's tape over the LED to mask the light.  I guess I could have just desoldered the LED but I feel covering the green glow works well.
 
 
-## Software<a name="test"></a>
+## Software
 # Taking Samples<a name="taking_samples"></a>
 ![PAR Reading test setup](https://docs.google.com/drawings/d/e/2PACX-1vT2_8f2wmohBskiDfQnLURVa0tcdJS2g_z64sPiCDXP1SivaWtmZ2_UgdJfDX8K_u-AdrUW4baJTv5w/pub?w=720&h=450)
 
