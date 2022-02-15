@@ -44,7 +44,7 @@ My (possibly naive) observation/thoughts:
 ## Machine Learning
 The ml approach is covered in the [PAR_Buddy_ml colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb)
  Method | # Samples | RMSE | r2|
-|------|-----|----|
+|------|-----|----|---|
 | ML |117| 125.5 | 0.951 |
 
 - "burple_red" samples were not used.  I decided not to include them because the visible spectrum channels recorded by the AS7341 is focused more on blue - orange then on spectrum in the red light.
