@@ -139,7 +139,7 @@ The bad news is the light has the potential to affect the readings.  Because of 
 - Taking readings of the AS7341's 8 channels that are in the visible light (i.e.: correspond to the PAR spectrum).
 - Putting the readings in a Python list datatype.
 - Inserting the PPFD reading that came as the message a the first element in the list.
-- Sending the list of 9 elements (PPFD reading from mq-500 and 8 channels from AS7341) as an mqtt message, `topic=PAR/READING_SAVE`,`message=<readings list as a JSON string>.
+- Sending the list of 9 elements (PPFD reading from mq-500 and 8 channels from AS7341) as an mqtt message, `topic=PAR/READING_SAVE`.
 4. When the Raspberry Pi sees there is a message with the topic `PAR/READING_SAVE` available, it takes the message payload, transforms it into a CSV string, and then writes it to a readings.csv file.  
 5. The Rasp Pi then sends a message with the topic `PAR/READING_OK` with the message payload set to the values in the CSV string. The readings can then be verified as read by subscribing to the `PAR/READING_OK` message.
 
