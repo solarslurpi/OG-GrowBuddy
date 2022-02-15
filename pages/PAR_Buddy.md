@@ -16,10 +16,11 @@ The current version of the prototype is 0.00001A - the first...sacrificial draft
 I find it frustrating when I am starting to read an article that I don't have an idea of the outcome. Once [samples are taken](#taking_samples), the data is fed into two colab notebooks:
 - [PAR Buddy mlr notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
 - [PAR_Buddy ml notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb)
+
 The conclusions are contained within these two notebooks.  I list below a summary of current thinking.
 
 ## Summary of Current Thoughts
-- PAR Buddy can be used for "good enough" PAR readings like those needed when adjusting the LED lights from the canopy within an indoor grow.  It is best calibrated using the y-intercept and correlation values using samples from the white and burple readings. Even more ideal, calibration samples come from the same LED source that will be used when using PAR Buddy.  Although, the burple readings don't seem to detract too much from the relationship between the mq-500's PPFD readings and the 8 channels read from the AS7341.
+- PAR Buddy can be used for "good enough" PAR readings like those needed when adjusting the LED lights from the canopy within an indoor grow.  It is best calibrated using the y-intercept and correlation values calculated by the mlr math using samples from the white and burple readings. Even more ideal, calibration samples come from the same LED source that will be used when using PAR Buddy.  Although, the burple readings don't seem to detract too much from the relationship between the mq-500's PPFD readings and the 8 channels read from the AS7341.
 - PAR Buddy cannot be calibrated to work with the burple_red setting of the LED settings.  I feel this because the spectrum channels read by the AS7341 lack channels in the red light.
 - MLR performs slightly better than ML.  I believe this is most likely due to my lack of ability building machine learning models.  I slapped together Dense layers with minimum knowledge of what I was doing.  Certainly an informed model would perform better.  
 
