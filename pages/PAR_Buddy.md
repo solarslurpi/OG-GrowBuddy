@@ -8,6 +8,24 @@ It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed 
 ![Pieces of PAR Buddy](../images/PARBuddy_open.jpg)
 
 Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, __can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's EXPLORE!__
+# Results from this Prototype
+I find it frustrating when I am starting to read an article that I don't have an idea of the outcome.  Here are the results:
+## Multiple Linear Regression
+As highlighted in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), a strong contender for determining the relationship between PAR Buddy readings and an Apogee mq-500 is Multiple Linear Regression (MLR).  This is the approach taken in the [PAR Buddy mlr jupyter notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb).  The conclusions section noted:
+|dataframe|# Samples|RMSE|r2|
+|---------|------|------|----|
+|readings|173|92.8|0.94|
+|readings_white|74|16.9|0.996|
+|readings_burple|43|46.7|0.95|
+|readings_burple_red|56|85.3|0.81|
+
+My (possibly naive) observation/thoughts:
+- For all dataframes, the r2 value shows there is a strong enough linear dependency between the PAR_Buddy readings and the PPFD value of the mq-500 PAR meter.
+- The number of samples was inconsistent across the dataframes.  This is where "I don't know" comes in how significant this is.  My thought is there are enough samples for each LED system to be statistically significant.
+- burple_red shows the worst fitting of the LED system.  I suspect the lack of sampling in the 700nm range contributed to an r2 of < 90%.
+- While the readings dataframe showed a high r2 of 94%, I feel most comfortable calibrating each LED system with only data taken from that LED system.
+
+
 # Sacrificial Draft Prototype
 The current version of the prototype is 0.00001A - the first...sacrificial draft.
 ## Hardware
