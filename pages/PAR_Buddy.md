@@ -169,10 +169,15 @@ This is the approach taken in  [A Novel Approach to Obtain PAR with a Multi-Chan
 Please see the [colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb) for details and results.
 
 ## Machine Learning
+The steps taken to model using ML is contained in [the PAR_Buddy_ml notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb).  I am very new to machine learnign methods.  While the results are promising, I am quite sure the model could be improved.  Right now the MLR approach gives slightly better results.
 
 ![ml](../images/ml.jpg)
 
 oohhh...how weighty!
+
+Please see the [colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb) for details and results.
+
+Thank you very much for reading.  Please send constructive feedback to happyday.github@gmail.com
 
 
 
