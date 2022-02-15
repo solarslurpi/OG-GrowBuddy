@@ -91,6 +91,19 @@ def initialize(self):
 cause readings in these high light scenarios to be unusable/oversaturated (i.e: readings with values of 65535).
 
 Einstein told us that $E = mc^2$.
+## Basic inline LaTeX
+
+To embed LaTeX within text, simply encapsulate the LaTeX portions in dollar signs (`$`). MathJax takes care of the rest. As an example, consider the sentence below and the markdown/LaTeX code to render it.
+
+Einstein told us that $E = mc^2$.
+
+    Einstein told us that $E = mc^2$.
+
+Notice how the equation is properly rendered, with mathematical variables in italics. Note also how `^2` was used to raise to a power. If the power has more than one character in it, it should be enclosed in braces (`{}`).  In fact, braces are used to generally group symbols in LaTeX.
+
+Euler told us that $\mathrm{e}^{i \pi} - 1 = 0$.
+
+    Euler told us that $\mathrm{e}^{i \pi} - 1 = 0$.
 
 [The article that explores the AS7431 as a PAR meter](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8152513/) used the following settings:
 _The ADC was configured with an integration time of 100 ms with a gain of four for all eight channels in the visible spectrum and a gain of one for the remaining IR channels. The settings are chosen in a way that the channel outputs are about half of the maximum possible count number on a cloud-less bright summer day._
