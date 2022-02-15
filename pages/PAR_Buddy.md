@@ -74,7 +74,7 @@ I combined this powerful BoB with:
     - [code.py](../CP_code/code.py)
     - [PAR_LIB.py](../CP_code/PAR_LIB.py)
 - Raspberry Pi 3+ running the mosquitto mqtt broker.  More details on how mqtt is used in the [Taking Samples section](#taking_samples).
-- A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
+- A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser._
 
 #### Changes to Default Settings
 Default sampling settings in Adafruit's AS7341 library set:
