@@ -1,3 +1,5 @@
+# Feedback
+All constructive feedback is very much welcome.  I do not have any formal training but do love learning.  Please send feedback to happyday.github@gmail.com.  Thank you.
 # What is PAR Buddy
 PAR Buddy is a DIY PPFD sensor with "dreams" of being "good enough" for home growers to use as a guide for adjusting the height of indoor LEDs during a grow season.
 
