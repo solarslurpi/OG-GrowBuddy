@@ -91,6 +91,8 @@ def initialize(self):
 cause readings in these high light scenarios to be unusable/oversaturated (i.e: readings with values of 65535).
 
 Einstein told us that $E = mc^2$.
+
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 ## Basic inline LaTeX
 
 To embed LaTeX within text, simply encapsulate the LaTeX portions in dollar signs (`$`). MathJax takes care of the rest. As an example, consider the sentence below and the markdown/LaTeX code to render it.
