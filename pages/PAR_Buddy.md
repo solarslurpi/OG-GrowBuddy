@@ -8,6 +8,8 @@ It is built using off-the-shelf electronics, a ping pong ball, and a 3D printed 
 ![Pieces of PAR Buddy](../images/PARBuddy_open.jpg)
 
 Just by noting the ping pong ball, it should be quite clear that getting as accurate as the MQ-500 is not going to happen.  But I am curious given my limited background in all this stuff, __can PAR Buddy act as a "good enough" substitute for a PPFD measuring device for indoor hobby growers?...let's EXPLORE!__
+# Sacrificial Draft Prototype
+The current version of the prototype is 0.00001A - the first...sacrificial draft.
 # Results from this Prototype
 I find it frustrating when I am starting to read an article that I don't have an idea of the outcome.  Here are the results:
 ## Multiple Linear Regression
@@ -26,8 +28,7 @@ My (possibly naive) observation/thoughts:
 - While the readings dataframe showed a high r2 of 94%, I feel most comfortable calibrating each LED system with only data taken from that LED system.
 
 
-# Sacrificial Draft Prototype
-The current version of the prototype is 0.00001A - the first...sacrificial draft.
+
 ## Hardware
 - A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I don't know what words to Google...thus I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
 - [Adafruit's AS7341 Breakout Board (BoB)](https://www.adafruit.com/product/4698)
