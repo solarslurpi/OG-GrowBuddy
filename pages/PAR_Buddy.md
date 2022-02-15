@@ -156,10 +156,13 @@ The "BIG JOB" we have is to figure out the (numerical) relationships between the
 
 Both will be evaluated using Jupyter notebooks.
 ## Multiple Linear Regression  
-The steps taken to model using MLR is contained in [a colab notebook, PAR_Buddy_mlr.ipynb](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
+The steps taken to model using MLR is contained in [the colab notebook, PAR_Buddy_mlr.ipynb](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
 
 The MLR approach solves for the y-intercept and the 8 coefficients:
-$$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
+```
+PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon 
+```
+(_Note: GitHub (sadly) does not support Latex_)
 
 This is the approach taken in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration).
 
