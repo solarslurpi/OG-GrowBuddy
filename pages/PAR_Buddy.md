@@ -15,6 +15,7 @@ The current version of the prototype is 0.00001A - the first...sacrificial draft
 # Results from this Prototype
 I find it frustrating when I am starting to read an article that I don't have an idea of the outcome.  Here are the results:
 ## Multiple Linear Regression
+- [PAR Buddy mlr jupyter notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
 As highlighted in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration), a strong contender for determining the relationship between PAR Buddy readings and an Apogee mq-500 is Multiple Linear Regression (MLR).  This is the approach taken in the [PAR Buddy mlr jupyter notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb).  The conclusions section noted:
 |dataframe|# Samples|RMSE|r2|
 |---------|------|------|----|
@@ -29,7 +30,15 @@ My (possibly naive) observation/thoughts:
 - burple_red shows the worst fitting of the LED system.  I suspect the lack of sampling in the 700nm range contributed to an r2 of < 90%.
 - While the readings dataframe showed a high r2 of 94%, I feel most comfortable calibrating each LED system with only data taken from that LED system.
 ## Machine Learning
-__TBD__
+The ml approach is covered in the [PAR_Buddy_ml colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_ml.ipynb)
+ Method | RMSE | r2|
+|------|-----|----|
+| MLR | 16.9 | 0.996 |
+| ML | 125.5 | 0.951 |
+
+- "burple_red" samples were not used.  I decided not to include them because the visible spectrum channels recorded by the AS7341 is focused more on blue - orange then on spectrum in the red light.
+- Multiple Linear Regression performed slightly better than machine learning.  Certainly, the machine learning model could be improved since the model I used lacks understanding of what the heck a good model is.
+- Running this notebook several times pointed to a variability in the RMSE between 60 and 140.  I assume this is due to the random picking of training and testing samples.  I believe testing with more data should decrease this variability.
 
 ## Hardware and Firmware
 ### AS7341 Multi-Channel Spectrometer
