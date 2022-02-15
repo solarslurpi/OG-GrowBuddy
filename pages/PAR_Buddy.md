@@ -94,7 +94,7 @@ cause readings in these high light scenarios to be unusable/oversaturated (i.e: 
 _The ADC was configured with an integration time of 100 ms with a gain of four for all eight channels in the visible spectrum and a gain of one for the remaining IR channels. The settings are chosen in a way that the channel outputs are about half of the maximum possible count number on a cloud-less bright summer day._
 
 According to the [AS7341 datasheet](https://ams.com/en/as7341), the interval time is calculated:
-$$ t_{𝑖𝑛𝑡} = (𝐴𝑇𝐼𝑀𝐸 + 1) × (𝐴𝑆𝑇𝐸𝑃 + 1) × 2.78µ𝑠 $$
+$ t_{𝑖𝑛𝑡} = (𝐴𝑇𝐼𝑀𝐸 + 1) × (𝐴𝑆𝑇𝐸𝑃 + 1) × 2.78µ𝑠 $
 Given the AS7341 library's default,
 ```
 interval time = (100 + 1) * (999 + 1 ) * 0.00278ms
