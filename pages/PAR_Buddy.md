@@ -29,7 +29,7 @@ My (possibly naive) observation/thoughts:
 - burple_red shows the worst fitting of the LED system.  I suspect the lack of sampling in the 700nm range contributed to an r2 of < 90%.
 - While the readings dataframe showed a high r2 of 94%, I feel most comfortable calibrating each LED system with only data taken from that LED system.
 ## Machine Learning
-
+__TBD__
 
 ## Hardware and Firmware
 ### AS7341 Multi-Channel Spectrometer
@@ -53,9 +53,8 @@ I combined this powerful BoB with:
 - CircuitPython code loaded onto the QT PY:
     - [code.py](../CP_code/code.py)
     - [PAR_LIB.py](../CP_code/PAR_LIB.py)
-- Raspberry Pi 3+ running the mosquitto mqtt broker.  More details on how mqtt is used in the [Taking Samples section](#taking_samples)
+- Raspberry Pi 3+ running the mosquitto mqtt broker.  More details on how mqtt is used in the [Taking Samples section](#taking_samples).
 - A Ping Pong ball that acts as a diffuser. _Note: My optics on optics is very poor.  I opted for a Ping Pong ball after much gnashing of teeth as I read how other makers approached the implementation of a diffuser.
-- A Raspberry Pi 3+
 
 #### Changes to Default Settings
 Default sampling settings in Adafruit's AS7341 library set:
@@ -125,7 +124,7 @@ The bad news is the light has the potential to affect the readings.  Because of 
 ![test 1 LED setup](../images/LED_setup_test1.jpeg)
 
 ## Store Readings.csv on GitHub
-Before taking another round of readings, the `readings.csv` file is copied from the Raspberry Pi into [a directory of readings](https://github.com/solarslurpi/GrowBuddy/tree/main/data).  The filenamnes are named `white` or `burple` plus `<the date recorded>`.csv.  All contents of the `readings.csv` file are deleted.
+Before taking another round of readings, the `readings.csv` file is copied from the Raspberry Pi into [a directory of readings](https://github.com/solarslurpi/GrowBuddy/tree/main/data).  The filenamnes are named `white`, `burple` or `burple_red` plus `<the date recorded>`.csv.  All contents of the `readings.csv` file are deleted.
 
 For example, `white_02092020.csv` means the readings in this file were taken under the "white" LEDs on February 9th, 2022.
 # Calibration Model
@@ -135,59 +134,20 @@ The "BIG JOB" we have is to figure out the (numerical) relationships between the
 
 Both will be evaluated using Jupyter notebooks.
 ## Multiple Linear Regression  
- A Multiple Linear Regression approach solves for the y-intercept and the 8 coefficients:
+The steps taken to model using MLR is contained in [a colab notebook, PAR_Buddy_mlr.ipynb](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb)
+
+The MLR approach solves for the y-intercept and the 8 coefficients:
 $$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
 
-This is the approach taken in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration)
+This is the approach taken in  [A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor, Suitable for Sensor Node Integration](https://www.researchgate.net/publication/351584740_A_Novel_Approach_to_Obtain_PAR_with_a_Multi-Channel_Spectral_Microsensor_Suitable_for_Sensor_Node_Integration).
 
+Please see the [colab notebook](https://github.com/solarslurpi/GrowBuddy/blob/main/notebooks/PAR_Buddy_mlr.ipynb) for details and results.
 
-
-----------
-
-strong enough that we can understand what we need to "plug in" when we take a reading with the AS7341 to get to a PPFD value that is not good enough for the professional grower, but good enough for a home grower who needs it mostly to adjust the distance the LEDs are from the plant's leaves.
-
-Similar to how the approach used to calculate the PPFD using an AS7341 sensor in, we'll use a multiple linear regression model.  
-
-Based on what I know, we can then build a model based on a Multiple Linear Regression approach:
-$$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
-
-Or using machine learning
+## Machine Learning
 
 ![ml](../images/ml.jpg)
 
 oohhh...how weighty!
 
 
-# System
 
-# Hardware
-
-# Calibration
-To calibrate, the approach taken in the article, [_A Novel Approach to Obtain PAR with a Multi-Channel Spectral Microsensor_](https://pubmed.ncbi.nlm.nih.gov/34068029/) will be used.
-
-A statistically significant number of samples will be fed into a multiple linear regression to find the slope intercept and coefficients.
-
-$$ PPFD = b_0 + \sum_{i=1}^{n=8} (b_ix_i) + \epsilon $$
-
-A sample consists of:
-- reading the PPFD of a known reference - in this case an Apogee meter.
-- readings from the 8 channels on the as7341 that are within the PAR range.
-
-
-## First Test
-I used an LED light setup as my first test.
-
-![test 1 LED setup](../images/LED_setup_test1.jpeg)
-
-
-
-
-
-
-### New Results
-New results are within ranges that can be sampled:
-```
-3152,17180,6920,18764,28643,26845,21375,11130
-4070,21699,8381,24061,37087,34443,26972,13683
-8259,38644,13648,46921,52489,48042,36851,16561
-```
