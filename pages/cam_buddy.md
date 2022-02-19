@@ -13,3 +13,5 @@ From my limited experience, we all use the Arduino IDE and "template" code.
 - Live Stream
 - TimeLapse photos taken once an hour when the LED lights are on.
 It is up to you to place cam buddy so the camera has the best view it can of the plants.
+
+Installed [FTP Server on Rasp Pi](https://phoenixnap.com/kb/raspberry-pi-ftp-server)
