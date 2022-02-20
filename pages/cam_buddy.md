@@ -1,5 +1,5 @@
 # Cam Buddy
-Cam Buddy provides a web cam and timelapse using an low cost ESP32-CAM.
+Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 
 ![web cam view](../images/webcam_plants.jpg)
 # Hardware
@@ -7,7 +7,7 @@ Cam Buddy provides a web cam and timelapse using an low cost ESP32-CAM.
 - USB cable
 - 3d Printed enclosure
 # Software
-From my limited experience, we all use the Arduino IDE and "template" code.
+From my limited experience, folks using the ESP32-CAM have been enabled by the Arduino IDE libraries and example code.  The one I ended up starting with is the [ESPAsyncWebServer library](https://github.com/me-no-dev/ESPAsyncWebServer).  I started with straight ESP32-CAM Video Streaming as [well documented in a Random Nerd Tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/).  Unfortunately, the synchronous nature did not allow me to also send timelapse images to a Raspberry Pi for the timelapse gif.
 
 ## Features
 - Live Stream
