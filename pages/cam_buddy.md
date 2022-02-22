@@ -1,7 +1,8 @@
 # Cam Buddy
 Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 
-![web cam view](../images/webcam_plants.jpg)
+![CamBuddy Overview](https://docs.google.com/drawings/d/e/2PACX-1vR7BKwVcEOv1lxMWqTq1ONacsw_-yF_4VFnuayzybmG0wb4NXQavaYXJ4MrJ4nPLWTJjspexMjTidkJ/pub?w=796&h=287)
+
 ## Features
 - Live Stream
 - TimeLapse photos taken once an hour.
