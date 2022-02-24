@@ -7,15 +7,18 @@
 2) Uses mqtt to publish the readings to the mqtt broker running on the growdaddy rasp pi server using the `tele/growbuddy/SENSOR` topic.
 
 ![Sniffer buddy schematic](../images/Sniffer_Buddy_Schematic.png)
-## Current Status
+# Current Status
 Prototype V2
-### Learnings from V1
+## Learnings from V1
 - We were not using Tasmota/wifi for each Buddy.  Instead, we wired directly to a Raspberry Pi.  This proved to be an unreliable bunch-o-wires bundle.  With Tasmota/wifi, we don't need to put the Raspberry Pi inside the Grow Tent.  Removed A LOT of clutter.
 - Tasmota afforded an easy way to get from putting the sensor together with an ESP chip and getting to mqtt messages.
 - mqtt is a great technology for all these buddies interacting to help us with mundane tasks.
 - getting to a good enclosure is really hard. More planning is needed.  Particularly around wires and connectors.  I'll collect my thoughts on wiring on [the wiring page](WIRING_and_connectors.md)
 - getting to a good physical device requires special attention to wiring.  Which becomes a mess.  More attention to detail is needed in wiring and what connectors to use.
 - The current ESPs do not handle battery powered.  The Buddies need to be plugged into power.
+# Hardware
+I am using a very inexpensive ESP32 I got awhile back.  I am concerned about the stability...but for now it seems good enough for the prototype.
+
 ## mqtt
 mqtt is a great technology for sending messages such as sensor readings to other devices that want to receive the messages (i.e.: subscribe to the messages)
 
