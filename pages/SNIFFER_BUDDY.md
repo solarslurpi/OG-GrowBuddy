@@ -8,7 +8,7 @@
 
 ![Sniffer buddy schematic](../images/Sniffer_Buddy_Schematic.png)
 # Current Status
-Prototype V2
+Prototype V2 running on an [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1).
 ## Learnings from V1
 - We were not using Tasmota/wifi for each Buddy.  Instead, we wired directly to a Raspberry Pi.  This proved to be an unreliable bunch-o-wires bundle.  With Tasmota/wifi, we don't need to put the Raspberry Pi inside the Grow Tent.  Removed A LOT of clutter.
 - Tasmota afforded an easy way to get from putting the sensor together with an ESP chip and getting to mqtt messages.
@@ -17,7 +17,15 @@ Prototype V2
 - getting to a good physical device requires special attention to wiring.  Which becomes a mess.  More attention to detail is needed in wiring and what connectors to use.
 - The current ESPs do not handle battery powered.  The Buddies need to be plugged into power.
 # Hardware
-I am using a very inexpensive ESP32 I got awhile back.  I am concerned about the stability...but for now it seems good enough for the prototype.
+I am using a very inexpensive mini D1 ESP286 I got awhile back. 
+## Tasmota on mini D1 ESP286
+When I first install the `Tasmota Sensors` build on an ESP286, The console has been configured to be `Sonoff basic` module type.  I change this to `Generic(18)` module type.
+
+![Generic 18 module type](../images/Tasmota_on_D1_esp286.jpg)
+
+
+
+ I am concerned about the stability...but for now it seems good enough for the prototype.
 
 ## mqtt
 mqtt is a great technology for sending messages such as sensor readings to other devices that want to receive the messages (i.e.: subscribe to the messages)
