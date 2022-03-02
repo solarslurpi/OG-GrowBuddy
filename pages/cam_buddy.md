@@ -3,7 +3,7 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 
 ![CamBuddy Overview](https://docs.google.com/drawings/d/e/2PACX-1vR7BKwVcEOv1lxMWqTq1ONacsw_-yF_4VFnuayzybmG0wb4NXQavaYXJ4MrJ4nPLWTJjspexMjTidkJ/pub?w=796&h=287)
 
-It is my first time using an ESP32-CAM.  I am sure the software could be much better written. 
+It is my first time using an ESP32-CAM.   
 
 ## Features
 
@@ -12,7 +12,11 @@ It is my first time using an ESP32-CAM.  I am sure the software could be much be
 - USB cable.  One end is connected to the + and - 5V power of the ESP32-CAM.  The other end gets plugged into a USB port.  This provides the power.
 - 3d Printed enclosure
 # Software
-- [ESPAsyncWebServer library](https://github.com/me-no-dev/ESPAsyncWebServer) - From my limited experience, folks using the ESP32-CAM have been enabled by the Arduino IDE libraries and example code.   I started with straight ESP32-CAM Video Streaming as [well documented in a Random Nerd Tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/).  Unfortunately, the synchronous nature did not allow me to also send timelapse images to a Raspberry Pi for the timelapse gif.
+Software was built using the Arduino IDE.  The main pieces include:
+
+- [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/): After much gringing and nashing of teeth, I ended up using the simplest Arduino code for video streaming from the ESP32-CAM.  I found [Rui Santos's Random Nerd tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/) to be very helpful.
+- The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`]())
+
 - [FTP Arduino client]
 
 
