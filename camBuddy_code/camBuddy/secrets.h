@@ -1,5 +1,5 @@
 #pragma once
-#define SECRET_SSID "happyday"
-#define SECRET_PASS "poi098lkj"
-#define FTP_USER "pi"
-#define FTP_PASS "raspberry"
+#define SECRET_SSID 
+#define SECRET_PASS 
+#define FTP_USER 
+#define FTP_PASS 
