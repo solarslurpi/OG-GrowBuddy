@@ -164,6 +164,6 @@ ffmpeg -framerate 5 -pattern_type glob -i '*.jpg' -c:v libx264 -crf 18 -pix_fmt 
 - __i__: a pattern that matches all the input photos in your timelapse.
 - __c:v__: This command tell ffmpeg to encode into H264 video format. 
 - __crf__:  A parameter specific to the H264 codec that determines the quality/compression.  [see the docs for H264 encoding for details of the crf command](https://trac.ffmpeg.org/wiki/Encode/H.264).
-- __pix_fmt__: This is here because I copy pasted.  As I understanding it, the stream needs to be encoded in YUV420p to work with video playback (Quicktime, etc...).
+- __pix_fmt__: The stream needs to be encoded in YUV420p to work with video playback (Quicktime, etc...).
 
 
