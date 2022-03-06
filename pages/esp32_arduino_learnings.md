@@ -121,7 +121,13 @@ esp32AiThinkerCam.menu.DebugLevel.debug.build.code_debug=4
 esp32AiThinkerCam.menu.DebugLevel.verbose=Verbose
 esp32AiThinkerCam.menu.DebugLevel.verbose.build.code_debug=5
 ```
-## ESP32 Logging
+## ESP32 Logging To Other I/Os
+There is a function within ESP32 logging that allows the code to provide a callback to be called whenever a log is to be written.  This will include the logs written to the Serial port when the different components are being used.
+```
+esp_log_set_vprintf(&vprintf_into_telnet);
+```
+AWESOME! Right?  Hmmm...the challenge is without some jiggling of the Arduino IDE bits, this wonderful function is not usable by us Arduino IDE folks!  Bummer.. But let us not despair...We can do this..
+
 The ESP32 has builtin logging features that aren't completely exposed as noted in
 [this article on ESP32 Arduino debugging](https://thingpulse.com/esp32-logging/).  The challenge is Arduino debugging assumes the serial port and there aren't really debugging levels.  What we want to do is access the ESP32's logging feature, particularly the one that lets us send debugging output to any io - telnet, SPIFFS, FTP...
 ### Turn on USE_ESP_IDF_LOG 1
@@ -132,3 +138,32 @@ The `esp32-hal-log.h` file is where the developer of the ESP32's Arduino logging
 The location of the file can be found by turning on verbose compilation.  I also allow all compiler warnings to be seen:
 
 ![Arduino Preferences](../images/Arduino_preferences.jpg)
+
+My location is:
+```
+C:\Users\happy\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.6\cores\esp32
+```
+The modification is near the beginning of the file:
+```
+#include "sdkconfig.h"
+
+//-------- MJ CHANGED FOR REDIRECTING LOGGING
+#define USE_ESP_IDF_LOG 1
+
+#define ARDUHAL_LOG_LEVEL_NONE       (0)
+#define ARDUHAL_LOG_LEVEL_ERROR      (1)
+```
+_Note: This caused several compile time warnings.:_
+```
+\1.0.6\cores\esp32\HardwareSerial.cpp:36:9: note: in expansion of macro 'log_e'
+         log_e("Serial number is invalid, please use 0, 1 or 2");
+\1.0.6\cores\esp32\esp32-hal-log.h:144:84: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+ #define log_e(format, ...) do {log_to_esp(TAG, ESP_LOG_ERROR, format, ##__VA_ARGS__);}while(0)
+                                                                                    
+\1.0.6\cores\esp32\HardwareSerial.cpp:73:13: note: in expansion of macro 'log_e'
+             log_e("Could not detect baudrate. Serial data at the port must be present within the timeout for detection to be possible");
+             ^
+```
+### Write The Callback Routine
+The callback routine can then send the buffer containing the logging info to wherever it wants.  Examples:
+- [Send log entries read by netcat clients]()
