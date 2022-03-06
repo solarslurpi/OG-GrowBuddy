@@ -166,4 +166,6 @@ _Note: This caused several compile time warnings.:_
 ```
 ### Write The Callback Routine
 The callback routine can then send the buffer containing the logging info to wherever it wants.  Examples:
-- [Send log entries read by netcat clients]()
+- [Send log entries read by netcat clients](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_UDP_log_test.ino)
+- [Write log entries to SPIFFS](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_SPIFFS_log_test.ino)
+- [Send log entries to telnet client](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_telnet_log_test.ino)
