@@ -43,6 +43,7 @@ void loop() {
   delay(1000);
 }
 
+static char log_print_buffer[512];
 int vprintf_into_ftp(const char *szFormat, va_list args)
 {
   struct tm timeinfo;
