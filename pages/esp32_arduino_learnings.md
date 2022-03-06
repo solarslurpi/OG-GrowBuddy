@@ -1,8 +1,6 @@
 # The Arduino Abstraction Causes Challenges
 ## Menu Access to ESP32 debugging and Partitioning
-Each board manufacturer is responsible for the exposure of features such as partitioning (needed for OTA) and ESP32 debugging.  I have been using the AI Thinker ESP32-CAM for several projects based on Googled recommendations.  The challenge with this
-
-- The AI Thinker's boards.txt entry does not have all the goodies other boards have.  Here's the AI Thinker board menu:
+Each board manufacturer is responsible for the exposure of features such as partitioning (needed for OTA) and ESP32 debugging.  I have been using the AI Thinker ESP32-CAM for several projects based on Googled recommendations.  The challenge with this is the AI Thinker's boards.txt entry does not have all the goodies other boards have.  Here's the AI Thinker board menu:
 
 ![AI Thinker Menu](../images/esp32aithinker.jpg)
 
@@ -125,4 +123,12 @@ esp32AiThinkerCam.menu.DebugLevel.verbose.build.code_debug=5
 ```
 ## ESP32 Logging
 The ESP32 has builtin logging features that aren't completely exposed as noted in
-[this article on ESP32 Arduino debugging](https://thingpulse.com/esp32-logging/).
+[this article on ESP32 Arduino debugging](https://thingpulse.com/esp32-logging/).  The challenge is Arduino debugging assumes the serial port and there aren't really debugging levels.  What we want to do is access the ESP32's logging feature, particularly the one that lets us send debugging output to any io - telnet, SPIFFS, FTP...
+### Turn on USE_ESP_IDF_LOG 1
+The `esp32-hal-log.h` file is where the developer of the ESP32's Arduino logging abstraction is defined.  The contents of this file needs to be modified to include
+```
+#define USE_ESP_IDF_LOG 1
+```
+The location of the file can be found by turning on verbose compilation.  I also allow all compiler warnings to be seen:
+
+![Arduino Preferences](../images/Arduino_preferences.jpg)

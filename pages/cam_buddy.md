@@ -3,8 +3,6 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 
 ![CamBuddy Overview](https://docs.google.com/drawings/d/e/2PACX-1vR7BKwVcEOv1lxMWqTq1ONacsw_-yF_4VFnuayzybmG0wb4NXQavaYXJ4MrJ4nPLWTJjspexMjTidkJ/pub?w=796&h=287)
 
-It is my first time using an ESP32-CAM.   
-
 # Features
 
 # Hardware
@@ -16,6 +14,7 @@ Software was built using the Arduino IDE.  The main pieces include:
 
 - [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/): After much grinding and nashing of teeth, I ended up using the simplest Arduino code for video streaming from the ESP32-CAM.  I found [Rui Santos's Random Nerd tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/) to be very helpful.  Hmmm...the code seems to run a bit qwirky, occasionally freezing and rebooting.  However, so far I have not missed taking an image, so there is continual running.
 - The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`](https://github.com/solarslurpi/GrowBuddy/blob/cdc84a9b7d882e8746123f16a8f8e802f8390ff4/camBuddy_code/camBuddy/storePicFTPonCore0.cpp))
+- Logging....
 
 - [FTP Arduino client]
 
