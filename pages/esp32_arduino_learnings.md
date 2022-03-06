@@ -170,4 +170,4 @@ The callback routine can then send the buffer containing the logging info to whe
 - [Send log entries read by netcat clients](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_UDP_log_test.ino)
 - [Write log entries to SPIFFS](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_SPIFFS_log_test.ino)
 - [Send log entries to telnet client](https://github.com/solarslurpi/GrowBuddy/blob/baa5c824cfbea5044d78e7a0d5f6da21422d0fd5/camBuddy_code/camBuddy/ESP32_telnet_log_test.ino)
-- [Send log entries to an ftp client]()
+- [Send log entries to an ftp client](https://github.com/solarslurpi/GrowBuddy/blob/f8e55002a1ca270cd2a9fdbca008b937a5111404/camBuddy_code/camBuddy/ESP32_ftp_log.ino)
