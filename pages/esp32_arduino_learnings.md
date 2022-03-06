@@ -1,4 +1,5 @@
 # The Arduino Abstraction Causes Challenges
+The Arduino IDE mapping to the ESP32 is not without it's challenges.  On this page, I detail the mapping challenges I have run accross and what I did to change the challenges into opportunities.
 ## Menu Access to ESP32 debugging and Partitioning
 Each board manufacturer is responsible for the exposure of features such as partitioning (needed for OTA) and ESP32 debugging.  I have been using the AI Thinker ESP32-CAM for several projects based on Googled recommendations.  The challenge with this is the AI Thinker's boards.txt entry does not have all the goodies other boards have.  Here's the AI Thinker board menu:
 
