@@ -1,8 +1,9 @@
 #include "Arduino.h"
 #include "esp_camera.h"
+#include <esp32-hal-log.h>
 
 #include "initCamera.h"
-
+static const char* _tag = "camBuddy-initCamera";
 
 //****************************************************
 //See https://github.com/espressif/esp32-camera/blob/master/driver/include/esp_camera.h
@@ -31,7 +32,7 @@ bool initCamera()
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
   //init with high specs to pre-allocate larger buffers
-  // Setting size of web cam window to VGA. 
+  // Setting size of web cam window to VGA.
   if (psramFound())
   {
     config.frame_size = FRAMESIZE_VGA;
@@ -50,7 +51,7 @@ bool initCamera()
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK)
   {
-    Serial.printf("Camera init failed with error 0x%x", err);
+    ESP_LOGE(_tag, "Camera init failed with error 0x%x", err);
     return false;
   }
 

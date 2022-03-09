@@ -1,4 +1,4 @@
 #pragma once
 
 
-bool initWifi();
+bool initWifi(char *hostname);

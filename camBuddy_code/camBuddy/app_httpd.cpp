@@ -22,9 +22,12 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //   SOFTWARE.
 //******************************************************************************
-#include "esp_http_server.h"
-#include "esp_camera.h"
-#include "Arduino.h"
+#include <esp_http_server.h>
+#include <esp_camera.h>
+
+#include <esp32-hal-log.h>
+
+static const char* _tag = "camBuddy-app-http";
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
@@ -32,6 +35,8 @@ static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
 static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
 
 httpd_handle_t stream_httpd = NULL;
+
+
 
 
 static esp_err_t stream_handler(httpd_req_t *req) {
@@ -48,10 +53,9 @@ static esp_err_t stream_handler(httpd_req_t *req) {
 
   while (true) {
     fb = esp_camera_fb_get();
-    //    Serial.print("Frame size ");
-    //    Serial.println(fb->len);
+    ESP_LOGV(_tag, "Frame size: %d", fb->len);
     if (!fb) {
-      Serial.println("Camera capture failed");
+      ESP_LOGE(_tag, "Camera capture failed");
       res = ESP_FAIL;
     } else {
       if (fb->width > 400) {
@@ -60,7 +64,7 @@ static esp_err_t stream_handler(httpd_req_t *req) {
           esp_camera_fb_return(fb);
           fb = NULL;
           if (!jpeg_converted) {
-            Serial.println("JPEG compression failed");
+            ESP_LOGE(_tag, "JPEG compression failed");
             res = ESP_FAIL;
           }
         } else {
@@ -107,9 +111,11 @@ void startCameraServer()
     .user_ctx = NULL
   };
 
-  Serial.printf("Starting stream server on port: '%d'\n", config.server_port);
+
+  ESP_LOGI(_tag, "Starting stream server on port: '%d'\n", config.server_port);
   if (httpd_start(&stream_httpd, &config) == ESP_OK)
   {
     httpd_register_uri_handler(stream_httpd, &index_uri);
+
   }
 }
