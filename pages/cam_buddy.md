@@ -4,6 +4,11 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 ![CamBuddy Overview](https://docs.google.com/drawings/d/e/2PACX-1vR7BKwVcEOv1lxMWqTq1ONacsw_-yF_4VFnuayzybmG0wb4NXQavaYXJ4MrJ4nPLWTJjspexMjTidkJ/pub?w=796&h=287)
 
 # Features
+- __Continually running a live video stream__.  Here we see the live video stream ad a UI component within a node-red dashboard:
+- __Takes and sends an image over FTP every few minutes__.  This means we can make a timelapse out of the images and observe changes that occur over a longer timeframe.
+- __Log information and errors to a logfile__ located on a Raspberry Pi.
+
+![camBuddy video stream in nodered dashboard](../images/camBuddyInnodereddashboard.jpg)
 
 # Hardware
 - [ESP32 CAM by AI Thinker](https://amzn.to/3LHZ6UN).  I used the AI Thinker version because comments "on the Internet" noted this was "the best" ESP32-CAM...for the "buck".  I describe some ESP32 challenges I am having in the Arduino environment in [the section on ESP32 Arduino learnings](../pages/esp32_arduino_learnings.md).  
