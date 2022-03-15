@@ -13,7 +13,7 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 ## Microcontroller and Camera
 The [ESP32 CAM by AI Thinker](https://amzn.to/3LHZ6UN) is a wonderful combination of a small powerful microcontroller integrated with a "good enough" camera! I used the AI Thinker version because comments "on the Internet" noted this was "the best" ESP32-CAM...for the "buck".  I describe some ESP32 challenges I am having in the Arduino environment in [the section on ESP32 Arduino learnings](../pages/esp32_arduino_learnings.md).  
 ## 3D Printed Enclosure
- I ended up using [ve7it's design on Thingiverse](https://www.thingiverse.com/thing:4057903)
+ I ended up using [ve7it's design on Thingiverse](https://www.thingiverse.com/thing:4057903).
 ### Improvements 
 There are a few immediate improvements that should be considered for the next build including:
 - Adding a [USB to DIP adapter](https://amzn.to/3CIpQ3q) to make it easy to plug in a USB cord.  [MagnusT's "Smallest possible ESP32-CAM~ entry on Thingiverse](https://www.thingiverse.com/thing:4107609) has shared such a design:
@@ -27,6 +27,17 @@ Software was built using the Arduino IDE.  The main pieces include:
 - [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/): After much grinding and nashing of teeth, I ended up using the simplest Arduino code for video streaming from the ESP32-CAM.  I found [Rui Santos's Random Nerd tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/) to be very helpful.  Hmmm...the code seems to run a bit qwirky, occasionally freezing and rebooting.  However, so far I have not missed taking an image, so there is continual running.
 - The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`](https://github.com/solarslurpi/GrowBuddy/blob/cdc84a9b7d882e8746123f16a8f8e802f8390ff4/camBuddy_code/camBuddy/storePicFTPonCore0.cpp))
 - Logging....
+
+```
+03-12-2022_04:34:30I (181253893) camBuddy-ftp_stuff: File img03-12-2022_04:34:29.jpg sent over ftp
+03-12-2022_04:49:36E (182158491) camBuddy-ftp_stuff: Camera capture failed
+03-12-2022_04:49:36E (182160692) FreeRTOS: FreeRTOS Task "Task0" should not return, Aborting now!
+03-12-2022_04:49:42I (4841) camBuddy-app-http: Starting stream server on port: '80'
+
+03-12-2022_05:04:42I (905528) camBuddy-ftp_stuff: File img03-12-2022_05:04:41.jpg sent over ftp
+03-12-2022_05:19:43I (1807040) camBuddy-ftp_stuff: File img03-12-2022_05:19:43.jpg sent over ftp
+03-12-2022_05:34:45I (2708660) camBuddy-ftp_stuff: File img03-12-2022_05:34:44.jpg sent over ftp
+```
 
 - [FTP Arduino client]
 
