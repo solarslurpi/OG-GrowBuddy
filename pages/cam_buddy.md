@@ -26,8 +26,9 @@ Software was built using the Arduino IDE.  The main pieces include:
 
 - The code that streams a live video feed over http to one client.  The majority of this code is found in [app_http.cpp](https://github.com/solarslurpi/GrowBuddy/blob/ad03f6705e5399dbb0571254f4b25ed775f86e3d/camBuddy_code/camBuddy/app_httpd.cpp).  The code was evolved from Rui Santos' excellent tutorial, [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/). 
 - The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`](https://github.com/solarslurpi/GrowBuddy/blob/cdc84a9b7d882e8746123f16a8f8e802f8390ff4/camBuddy_code/camBuddy/storePicFTPonCore0.cpp))
-- ESP32 logging.
+- ESP32 logging. Implementing logging gave me better insight into the Arduino IDE's abstraction layer over the ESP32 IDF.  The Arduino IDE only gave me rudimentary printf to a locally plugged in serial monitor for logging.  Yet, in the depths below the Arduino abstraction layer, the ESP IDF has a much more powerful logging subsystem.  There's a few things to do before we can use it in our project, especially with the AI Thinker ESP32-CAM.  To get logging to work, I had to understand and implement the [menu access and debugging "toggles"](esp32_arduino_learnings.md)
 
+Once we've done the somewhat confusing goop to get ESP32 logging on the Arduino, we can send logs to an FTP Server.
 ```
 03-12-2022_04:34:30I (181253893) camBuddy-ftp_stuff: File img03-12-2022_04:34:29.jpg sent over ftp
 03-12-2022_04:49:36E (182158491) camBuddy-ftp_stuff: Camera capture failed
@@ -38,8 +39,8 @@ Software was built using the Arduino IDE.  The main pieces include:
 03-12-2022_05:19:43I (1807040) camBuddy-ftp_stuff: File img03-12-2022_05:19:43.jpg sent over ftp
 03-12-2022_05:34:45I (2708660) camBuddy-ftp_stuff: File img03-12-2022_05:34:44.jpg sent over ftp
 ```
+The above shows logging when the timelapse photo was taken.  It also shows a time where camera capture failed.  FreeRTOS tells us that the image getting and sending should not immediately return.  I could fix this, but I like the way it forces the ESP32 to reboot.
 
-- [FTP Arduino client]
 
 
 # Setup
