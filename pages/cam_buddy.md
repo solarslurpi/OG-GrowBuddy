@@ -24,9 +24,9 @@ There are a few immediate improvements that should be considered for the next bu
 # Software
 Software was built using the Arduino IDE.  The main pieces include:
 
-- [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/): After much grinding and nashing of teeth, I ended up using the simplest Arduino code for video streaming from the ESP32-CAM.  I found [Rui Santos's Random Nerd tutorial](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/) to be very helpful.  Hmmm...the code seems to run a bit qwirky, occasionally freezing and rebooting.  However, so far I have not missed taking an image, so there is continual running.
+- The code that streams a live video feed over http to one client.  The majority of this code is found in [app_http.cpp](https://github.com/solarslurpi/GrowBuddy/blob/ad03f6705e5399dbb0571254f4b25ed775f86e3d/camBuddy_code/camBuddy/app_httpd.cpp).  The code was evolved from Rui Santos' excellent tutorial, [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/). 
 - The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`](https://github.com/solarslurpi/GrowBuddy/blob/cdc84a9b7d882e8746123f16a8f8e802f8390ff4/camBuddy_code/camBuddy/storePicFTPonCore0.cpp))
-- Logging....
+- ESP32 logging.
 
 ```
 03-12-2022_04:34:30I (181253893) camBuddy-ftp_stuff: File img03-12-2022_04:34:29.jpg sent over ftp
