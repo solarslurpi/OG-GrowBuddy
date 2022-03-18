@@ -4,10 +4,10 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 
 # Features
 - __Continually running a live video stream__.  Here we see the live video stream as a UI component within a node-red dashboard:
-- __Takes and sends an image over FTP every few minutes__.  This means we can make a timelapse out of the images and observe changes that occur over a longer timeframe.
-- __Log information and errors to a logfile__ located on a Raspberry Pi.
 
 ![camBuddy video stream in nodered dashboard](../images/camBuddyInnodereddashboard.jpg)
+- __Takes and sends an image over FTP every few minutes__.  This means we can make a timelapse out of the images and observe changes that occur over a longer timeframe.
+- __Log information and errors to a logfile__ located on a Raspberry Pi.
 
 # Hardware
 ## Microcontroller and Camera
@@ -19,12 +19,13 @@ There are a few immediate improvements that should be considered for the next bu
 - Adding a [USB to DIP adapter](https://amzn.to/3CIpQ3q) to make it easy to plug in a USB cord.  [MagnusT's "Smallest possible ESP32-CAM~ entry on Thingiverse](https://www.thingiverse.com/thing:4107609) has shared such a design:
 
 ![USB to DIP ESP32-CAM case](../images/thingiversecase_with_usb_connector.jpg)
-- Adding a way to easily mount within the grow tent.  Right now I use string and some two sided tape.  Best to have a way to easily mount on any of the grow tent's poles at whatever height and angle is necessary.
-
+- Adding a way to easily mount either in a grow tent or elsewhere.  Right now I use string and some two sided tape.  
 # Software
-Software was built using the Arduino IDE.  The main pieces include:
+The code is written using the Arduino IDE.  Since I am not an expert with Arduino code (and JavaScript for that matter...oh and the details of HTML...hmmm...), I stuck with the Arduino IDE and installed all the ESP32 goo as described in multiple YouTube videos.  As I got deeper into the project, I couldn't help thinking it might be a better path to code directly in the ESP IDF instead of using the Arduino IDE...
 
-- The code that streams a live video feed over http to one client.  The majority of this code is found in [app_http.cpp](https://github.com/solarslurpi/GrowBuddy/blob/ad03f6705e5399dbb0571254f4b25ed775f86e3d/camBuddy_code/camBuddy/app_httpd.cpp).  The code was evolved from Rui Santos' excellent tutorial, [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/). 
+The main pieces include:
+
+- The code that streams a live video feed over http to one client.  The majority of this code is found in [app_http.cpp](https://github.com/solarslurpi/GrowBuddy/blob/ad03f6705e5399dbb0571254f4b25ed775f86e3d/camBuddy_code/camBuddy/app_httpd.cpp).  The code was evolved from Rui Santos' excellent tutorial, [ESP32-CAM Video Streaming Web Code](https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/). The camera is initialized in the function `bool initCamera();`.  I am using the settings for the AI Thinker ESP32-CAM.  One thing that we might want to change is the image quality or perhaps the pixel format.  The constants are defined in [espressif's esp32-camera file sensor.h](https://github.com/espressif/esp32-camera/blob/master/driver/include/sensor.h).
 - The code for storing the image on a Raspberry Pi server is pinned to run on the ESP32's Core0 (see [`initStorePicFTPonCore0()`](https://github.com/solarslurpi/GrowBuddy/blob/cdc84a9b7d882e8746123f16a8f8e802f8390ff4/camBuddy_code/camBuddy/storePicFTPonCore0.cpp))
 - ESP32 logging. Implementing logging gave me better insight into the Arduino IDE's abstraction layer over the ESP32 IDF.  The Arduino IDE only gave me rudimentary printf to a locally plugged in serial monitor for logging.  Yet, in the depths below the Arduino abstraction layer, the ESP IDF has a much more powerful logging subsystem.  There's a few things to do before we can use it in our project, especially with the AI Thinker ESP32-CAM.  To get logging to work, I had to understand and implement the [menu access and debugging "toggles"](esp32_arduino_learnings.md)
 
@@ -41,8 +42,6 @@ Once we've done the somewhat confusing goop to get ESP32 logging on the Arduino,
 ```
 The above shows logging when the timelapse photo was taken.  It also shows a time where camera capture failed.  FreeRTOS tells us that the image getting and sending should not immediately return.  I could fix this, but I like the way it forces the ESP32 to reboot.
 
-
-
 # Setup
 ## FTP Server
 An FTP Server running on the GrowBuddy Rasp Pi server is used to store images taken from camBuddy to create a timelapse.  I Installed the [FTP Server on Rasp Pi](https://phoenixnap.com/kb/raspberry-pi-ftp-server).
@@ -51,7 +50,7 @@ On a Windows PC, FTP shares can be accessed in the file manager.
 
 ![path to ftp server on Windows](../images/ftp_filemanager.jpg)
 
-To access the ftp share on growbuddy for example - if the username = pi and password = raspberry, `ftp://pi:raspberry@growbuddy`.
+To access the ftp share on the Rasp Pi Server named growbuddy for example - if the username = pi and password = raspberry, `ftp://pi:raspberry@growbuddy`.
 
 ### Timelapse
 A timelapse is created using the images in the ftp share.
@@ -69,12 +68,7 @@ ffmpeg -framerate 10 -pattern_type glob -i '*.jpg' -c:v libx264 -crf 18 -pix_fmt
 - __pix_fmt__: The stream needs to be encoded in YUV420p to work with video playback (Quicktime, etc...).
 
 
-## Arduino IDE and Code
-The code is written using the Arduino IDE.  Since I am not an expert with Arduino code (and JavaScript for that matter...oh and the details of HTML...hmmm...), I stuck with the Arduino IDE and installed all the ESP32 goo as described in multiple YouTube videos.
-## ESP32-CAM Stuff
-To use the ESP32-CAM:
-- Initialize.  See the function `bool initCamera();`.  I am using the settings for the AI Thinker ESP32-CAM.  One thing that we might want to change is the image quality or perhaps the pixel format.  The constants are defined in [espressif's esp32-camera file sensor.h](https://github.com/espressif/esp32-camera/blob/master/driver/include/sensor.h).
-- Take a "snapshot" (i.e.: grab a frame) at the resolution and format specified in the camera initialization.
+
 
 
 
