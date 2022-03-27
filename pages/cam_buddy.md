@@ -59,6 +59,8 @@ There are several OTA methods available for ESP32 boards.  After trial and error
 AsyncElegantOTA.begin(&otaServer);    // Start ElegantOTA
 otaServer.begin();
 ```
+## Restart
+Restart is handled by using the nifty `ESP.restart()` method.  The ESP class is defined in `Esp.h`, which is dragged in by `Arduino.h`.
 
 # Setup
 ## FTP Server
