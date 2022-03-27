@@ -54,7 +54,11 @@ Once we've done the somewhat confusing goop to get ESP32 logging on the Arduino,
 ```
 The above shows logging when the timelapse photo was taken.  I included several "snapshots" where camBuddy failed to take the image.  VERY useful!  I'm not fixing anything at this point because camBuddy readjusts and keeps going.
 ## OTA
-There are several OTA methods available for ESP32 boards.  After trial and error, I ended up using the [AsynccElegantOTA Library as recommended by Ruis Santos](https://randomnerdtutorials.com/esp32-ota-over-the-air-arduino/).  I register the OTA server on port 91.  OTA update is accessed by going to the URL `cambuddy:91/update` (note: the name of your ESP32 may be different.  My code uses the name cambuddy).  I'm not thrilled to be running two services - the web service on port 80 and the update service on port 90 - however, this was the most expedient way to get everything working.
+There are several OTA methods available for ESP32 boards.  After trial and error, I ended up using the [AsynccElegantOTA Library as recommended by Ruis Santos](https://randomnerdtutorials.com/esp32-ota-over-the-air-arduino/).  I register the OTA server on port 91.  OTA update is accessed by going to the URL `cambuddy:91/update` (note: the name of your ESP32 may be different.  My code uses the name cambuddy).  I'm not thrilled to be running two services - the web service on port 80 and the update service on port 90 - however, this was the most expedient way to get everything working.  I mean, it doesn't get simpler than this!:
+```
+AsyncElegantOTA.begin(&otaServer);    // Start ElegantOTA
+otaServer.begin();
+```
 
 # Setup
 ## FTP Server
