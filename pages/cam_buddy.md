@@ -36,11 +36,22 @@ Once we've done the somewhat confusing goop to get ESP32 logging on the Arduino,
 03-12-2022_04:49:36E (182160692) FreeRTOS: FreeRTOS Task "Task0" should not return, Aborting now!
 03-12-2022_04:49:42I (4841) camBuddy-app-http: Starting stream server on port: '80'
 
-03-12-2022_05:04:42I (905528) camBuddy-ftp_stuff: File img03-12-2022_05:04:41.jpg sent over ftp
-03-12-2022_05:19:43I (1807040) camBuddy-ftp_stuff: File img03-12-2022_05:19:43.jpg sent over ftp
-03-12-2022_05:34:45I (2708660) camBuddy-ftp_stuff: File img03-12-2022_05:34:44.jpg sent over ftp
+03-17-2022_13:02:51I (457985863) camBuddy-ftp_stuff: File img03-17-2022_13:02:50.jpg sent over ftp
+03-17-2022_13:41:47E (47018) ARDUINO: socket error on fd 59, errno: 104, "Connection reset by peer"
+03-17-2022_13:41:57E (47018) ARDUINO: socket error on fd 59, errno: 104, "Connection reset by peer"
+
+03-17-2022_13:56:05I (905503) camBuddy-ftp_stuff: File img03-17-2022_13:56:04.jpg sent over ftp
+
+03-19-2022_11:46:53I (110937101) camBuddy-ftp_stuff: File img03-19-2022_11:46:53.jpg sent over ftp
+03-19-2022_11:59:14I (4840) camBuddy-app-http: Starting stream server on port: '80'
+
+03-27-2022_04:45:49E (5428) ARDUINO: DNS Failed for growbuddy
+03-27-2022_04:45:59E (5428) ARDUINO: DNS Failed for growbuddy
+03-27-2022_04:46:10E (5428) ARDUINO: DNS Failed for growbuddy
+03-27-2022_04:46:21E (5428) ARDUINO: DNS Failed for growbuddy
+
 ```
-The above shows logging when the timelapse photo was taken.  It also shows a time where camera capture failed.  FreeRTOS tells us that the image getting and sending should not immediately return.  I could fix this, but I like the way it forces the ESP32 to reboot.
+The above shows logging when the timelapse photo was taken.  I included several "snapshots" where camBuddy failed to take the image.  VERY useful!  I'm not fixing anything at this point because camBuddy readjusts and keeps going.
 
 # Setup
 ## FTP Server
