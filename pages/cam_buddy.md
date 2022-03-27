@@ -59,8 +59,20 @@ There are several OTA methods available for ESP32 boards.  After trial and error
 AsyncElegantOTA.begin(&otaServer);    // Start ElegantOTA
 otaServer.begin();
 ```
+To use OTA:
+1. Generate a .bin file: `Generate a .bin file. Go to Sketch > Export Compiled Binary. A new .bin file should be created under the project folder.
+2. Go to the URL `http://cambuddy:91/update`
+2. Upload the file.
+
 ## Restart
-Restart is handled by using the nifty `ESP.restart()` method.  The ESP class is defined in `Esp.h`, which is dragged in by `Arduino.h`.
+Restart is handled by using the nifty `ESP.restart()` method.  The ESP class is defined in `Esp.h`, which is dragged in by `Arduino.h`.  To restart the ESP32, `http://cambuddy/restart`.  Nothing is shown on the display.  However the log file will have the following entries:
+```
+03-27-2022_15:28:43I (47583) camBuddy-app-http: Restarting ESP32
+
+03-27-2022_15:29:19I (4840) camBuddy-app-http: Starting stream server on port: '80'
+```
+
+
 
 # Setup
 ## FTP Server
