@@ -8,6 +8,7 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 ![camBuddy video stream in nodered dashboard](../images/camBuddyInnodereddashboard.jpg)
 - __Takes and sends an image over FTP every few minutes__.  This means we can make a timelapse out of the images and observe changes that occur over a longer timeframe.
 - __Log information and errors to a logfile__ located on a Raspberry Pi.
+- __OTA updating__ Over-The-Air updating is accessed through the 
 
 # Hardware
 ## Microcontroller and Camera
@@ -52,6 +53,8 @@ Once we've done the somewhat confusing goop to get ESP32 logging on the Arduino,
 
 ```
 The above shows logging when the timelapse photo was taken.  I included several "snapshots" where camBuddy failed to take the image.  VERY useful!  I'm not fixing anything at this point because camBuddy readjusts and keeps going.
+## OTA
+There are several OTA methods available for ESP32 boards.  After trial and error, I ended up using the [AsynccElegantOTA Library as recommended by Ruis Santos](https://randomnerdtutorials.com/esp32-ota-over-the-air-arduino/).  I register the OTA server on port 91.  OTA update is accessed by going to the URL `cambuddy:91/update` (note: the name of your ESP32 may be different.  My code uses the name cambuddy).  I'm not thrilled to be running two services - the web service on port 80 and the update service on port 90 - however, this was the most expedient way to get everything working.
 
 # Setup
 ## FTP Server
