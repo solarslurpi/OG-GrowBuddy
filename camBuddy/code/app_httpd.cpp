@@ -22,8 +22,10 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //   SOFTWARE.
 //******************************************************************************
+#include <Arduino.h> // I added this in when I added ESP.restart().  Arduino.h drags in Esp.h.  Esp.h has extern EspClass ESP;
 #include <esp_http_server.h>
 #include <esp_camera.h>
+
 
 #include <esp32-hal-log.h>
 
@@ -36,9 +38,10 @@ static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %
 
 httpd_handle_t stream_httpd = NULL;
 
-
-
-
+static esp_err_t restart_handler(httpd_req_t *req) {
+  ESP_LOGI(_tag, "Restarting ESP32\n");
+  ESP.restart();
+}
 static esp_err_t stream_handler(httpd_req_t *req) {
   camera_fb_t * fb = NULL;
   esp_err_t res = ESP_OK;
@@ -110,12 +113,19 @@ void startCameraServer()
     .handler = stream_handler,
     .user_ctx = NULL
   };
+  httpd_uri_t restart_uri = {
+    .uri = "/restart",
+    .method = HTTP_GET,
+    .handler = restart_handler,
+    .user_ctx = NULL
+  };
 
 
   ESP_LOGI(_tag, "Starting stream server on port: '%d'\n", config.server_port);
   if (httpd_start(&stream_httpd, &config) == ESP_OK)
   {
     httpd_register_uri_handler(stream_httpd, &index_uri);
+    httpd_register_uri_handler(stream_httpd, &restart_uri);
 
   }
 }
