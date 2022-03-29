@@ -14,7 +14,7 @@ Cam Buddy provides a web cam and timelapse using a low cost ESP32-CAM.
 ## Microcontroller and Camera
 The [ESP32 CAM by AI Thinker](https://amzn.to/3LHZ6UN) is a wonderful combination of a small powerful microcontroller integrated with a "good enough" camera! I used the AI Thinker version because comments "on the Internet" noted this was "the best" ESP32-CAM...for the "buck".  I describe some ESP32 challenges I am having in the Arduino environment in [the section on ESP32 Arduino learnings](../pages/esp32_arduino_learnings.md).  
 ## 3D Printed Enclosure
- I ended up using [ve7it's design on Thingiverse](https://www.thingiverse.com/thing:4057903).
+ I ended up evolving [ve7it's design on Thingiverse](https://www.thingiverse.com/thing:4057903).  [Here are my F360 camBuddy enclosure files](../camBuddy/enclosure/).
 ### Improvements 
 There are a few immediate improvements that should be considered for the next build including:
 - Adding a [USB to DIP adapter](https://amzn.to/3CIpQ3q) to make it easy to plug in a USB cord.  [MagnusT's "Smallest possible ESP32-CAM~ entry on Thingiverse](https://www.thingiverse.com/thing:4107609) has shared such a design:
