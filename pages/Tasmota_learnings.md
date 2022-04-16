@@ -1,6 +1,17 @@
 # Tasmota Learnings
 [Back to Top](../README.md)
-# ESPs I have used
+# Challenges
+We put this section at the top because we didn't want to bury "the hacks" we needed to get stuff working right.
+## SnifferBuddy SCD30 Takes a Restart to Work
+We found out that when the SnifferBuddy boots, the SCD30 readings are not there.  Restarting fixed this problem.  We added the following rule:
+```
+Rule1 on System#Boot DO restart 1 endon
+on System#Wake Do
+    restart 1
+endon
+```
+
+# ESPs we have used
 Tasmota runs on an ESP.  Either an ESP32 or ESP286.  Here are the two I've tried:
 - [Wemos mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32)...This is a cheap clone that isn't really a Wemos..
 - [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1)...another cheap clone I got from aliexpress.
