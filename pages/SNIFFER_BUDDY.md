@@ -18,10 +18,10 @@ Prototype V2 running on an [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorial
 - The current ESPs do not handle battery powered.  The Buddies need to be plugged into power.
 # Hardware
 I am using a very inexpensive mini D1 ESP286 I got awhile back. 
-## Tasmota on mini D1 ESP286
+## Tasmota configuration on mini D1 ESP286
 When I first install the `Tasmota Sensors` build on an ESP286, The console has been configured to be `Sonoff basic` module type.  I change this to `Generic(18)` module type.
 
-![Generic 18 module type](../images/Tasmota_on_D1_esp286.jpg)
+![Generic 18 module type](../images/snifferbuddy_tasmota_screen.jpg)
 
 
 

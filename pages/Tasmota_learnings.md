@@ -71,6 +71,15 @@ switchmode2 15
 - Super easy to use a sensor with a driver pre-built into the Tasmota Sensors build.  
 
 - Best when using mqtt to pass messages such as sensor readings to an automation system.  See some [mqtt examples](https://tasmota.github.io/docs/MQTT/#examples)
+## Checking Installed Drivers
+The first thing to make sure, is what version of the Tasmota binary is installed.  Most of the time, we will want the sensor build.
+
+The drivers we have used have been for i2cdevices.
+When running `i2cdevice` on the command line, [the numbers associated with the drivers](https://tasmota.github.io/docs/I2CDEVICES/#supported-i2c-devices) are returned. Note number 29 is the number for the SCD30 driver.
+```
+09:02:00.512 CMD: Grp 0, Cmd 'I2CDRIVER', Idx 1, Len 0, Pld -99, Data ''
+09:02:00.520 MQT: stat/snifferbuddy/RESULT = {"I2CDriver":"7,8,9,10,11,12,13,14,15,17,18,20,24,29,31,36,41,42,44,46,48"}
+```
 ## Rules
 [Rules](https://tasmota.github.io/docs/Rules/) are a powerful feature of Tasmota.  I ended up not using a rule for __the Sniffer Buddy__, however as I was exploring Rules, I ended up writing this one that worked.  I include it here to enhance our knowledge of how to write rules:
 #### Rule to Publish Light ON/OFF Events
@@ -88,9 +97,3 @@ Rule1 1
 - The rule is then _if the reading on the Analog A1 pin is greater than 4000 (for the first time in awhile) publish an "ON" over mqtt.. likewise, the first time the reading changes from being above 4000 to below 4000, send an "OFF" message.  The reasong it is 4000 has to do with this being an ESP32 and the ADC has a resolution of 0 to 4095.__
 The first line enables the rules, the second stops repetitive messages & only triggers on a change & the third line sends a message based on the value of the LDR crossing a threshold. Please note that the 200 above will need to be modified to suit your setup.
 - `Rule1 1` Enables the rule.
-
-
-## Tasmota on mini D1 ESP286
-When I first install the `Tasmota Sensors` build on an ESP286, The console has been configured to be `Sonoff basic` module type.  I change this to `Generic(18)` module type.
-
-![Generic 18 module type](../images/Tasmota_on_D1_esp286.jpg)
