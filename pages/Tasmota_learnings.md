@@ -1,23 +1,24 @@
 # Tasmota Learnings
 [Back to Top](../README.md)
 # Challenges
-We put this section at the top because we didn't want to bury "the hacks" we needed to get stuff working right.
-## SnifferBuddy SCD30 Takes a Restart to Work
-We found out that when the SnifferBuddy boots, the SCD30 readings are not there.  Restarting fixed this problem.  We added the following rule:
-```
-Rule1 on System#Boot DO restart 1 endon
-on System#Wake Do
-    restart 1
-endon
-```
+I put this section at the top because we didn't want to bury "the hacks" I needed to get stuff working right.
+## SnifferBuddy SCD30 + Wemos ESP2866 Takes a Restart to Work
+While everything worked perfectly using an ESP32, I ran into a challenge running the scd30 + ESP2866 Wemos clone.  On initial boot, the values from the scd30 were not found.  I could get them to show, but this required sending the `restart 1` command.  After much nashing of teeth, I decided to see if I could figure out what is going on by looking at the code.  
+# Creating a Tasmota .bin
+## Resources
+- [Compiling your own custom Tasmota on the web - No installs, no coding!](https://www.youtube.com/watch?v=vod3Woj_vrs)
+## Discussion
+Ah...the smell of a fresh path! Tasmota makes creating a custom build (.bin file)  easy because I could use [GitPod](https://tasmota.github.io/docs/Gitpod/). The [Tasmota GitPod page]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master) noted 3 different build to start with. I started with the [main release]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master).  I already had GitPod associated with my GitHub account, so just clicking on the main release URL loads the Tasmota build into my browser.
+
+
+
 
 # ESPs we have used
 Tasmota runs on an ESP.  Either an ESP32 or ESP286.  Here are the two I've tried:
 - [Wemos mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32)...This is a cheap clone that isn't really a Wemos..
 - [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1)...another cheap clone I got from aliexpress.
 ## Installation
-The easiest way to install Tasmota is using either the Edge or Chrome browser (web install doesn't work using the Brave browser) and go to [Tasmota Install URL](https://tasmota.github.io/install/).
-
+The easiest way to install Tasmota is using either the Edge or Chrome browser (web install doesn't work using the Brave browser) and go to [Tasmota Install URL](https://tasmota.github.io/install/).  
 _Note:  If the USB/COM port can't be identified, the first thing to do is to change cables.  The USB cable might not support data i/o.  If that doesn't work, check the USB driver.  The ESP286 or ESP32 may be using a driver that isn't installed on your Windows PC or Mac._
 
 There are many Tasmota binaries that could be installed.  We want to install the Tasmota Sensors binary.
