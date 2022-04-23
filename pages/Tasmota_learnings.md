@@ -3,17 +3,38 @@
 # Challenges
 I put this section at the top because we didn't want to bury "the hacks" I needed to get stuff working right.
 ## SnifferBuddy SCD30 + Wemos ESP2866 Takes a Restart to Work
-While everything worked perfectly using an ESP32, I ran into a challenge running the scd30 + ESP2866 Wemos clone.  On initial boot, the values from the scd30 were not found.  I could get them to show, but this required sending the `restart 1` command.  After much nashing of teeth, I decided to see if I could figure out what is going on by looking at the code.  
+While everything worked perfectly using an ESP32, I ran into a challenge running the scd30 + ESP286 Wemos clone.  On initial boot, the values from the scd30 were not found.  I could get them to show, but this required sending the `restart 1` command.  After much nashing of teeth, I decided to see if I could figure out what is going on by looking at the code.  
 # Creating a Tasmota .bin
 ## Resources
 - [Compiling your own custom Tasmota on the web - No installs, no coding!](https://www.youtube.com/watch?v=vod3Woj_vrs)
 ## Discussion
-Ah...the smell of a fresh path! Tasmota makes creating a custom build (.bin file)  easy because I could use [GitPod](https://tasmota.github.io/docs/Gitpod/). The [Tasmota GitPod page]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master) noted 3 different build to start with. I started with the [main release]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master).  I already had GitPod associated with my GitHub account, so just clicking on the main release URL loads the Tasmota build into my browser.
+Tasmota makes creating a custom build (.bin file)  easy because I could use [GitPod](https://tasmota.github.io/docs/Gitpod/). The [Tasmota GitPod page]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master) noted 3 different build to start with. I started with the [main release]( https://gitpod.io#https://github.com/arendst/Tasmota/tree/master).  I already had GitPod associated with my GitHub account, so just clicking on the main release URL loads the Tasmota build into my browser.
 
+The files I modified include:
+- [/tasmota/xsns_42_scd30.ino](https://github.com/arendst/Tasmota/blob/d157b1c5e0639f8ff29eba01fa3c181a01ae211c/tasmota/xsns_42_scd30.ino).  From what I can tell, Tasmota started as an Arduino project.  The interface into (3rd party) sensor code is a .ino file like this one for the scd30.  The current code:
+```
+void Scd30Detect(void)
+{
+  if (!I2cSetDevice(SCD30_ADDRESS)) { return; }
 
-
-
-# ESPs we have used
+  scd30.begin();
+```
+On the ESP2866 Wemos, the code doesn't get past the initial `if` statement in the scenario when the ESP8266 is powered up.  It does pass when restarting with `restart 1` on the command line.  Most likely, powering up is taking longer on the ESP286 to the point Tasmota is impatient and doesn't wait for the scd30 to be powered up.  I did not debug further to find out how to robustly fix.  I got to a build that "works for me" with simply:
+```
+void Scd30Detect(void)
+{
+#ifdef ESP32
+  if (!I2cSetDevice(SCD30_ADDRESS)) { return; }
+#endif
+  scd30.begin();
+```
+- [tasmota/my_user_config.h](https://github.com/arendst/Tasmota/blob/d157b1c5e0639f8ff29eba01fa3c181a01ae211c/tasmota/my_user_config.h).  For more info on this file see [the Tasmota compiling YouTube video](https://www.youtube.com/watch?v=vod3Woj_vrs).  I changed:
+```
+#define TEMP_CONVERSION        false             // [SetOption8] Return temperature in (false = Celsius or true = Fahrenheit)
+```
+to `true` to show temperature readings in celsius.  As the comment states, I could have set this on the command line using [`SetOption8 1`](https://tasmota.github.io/docs/Commands/#setoptions).
+# ESPs I've Explored
+## Using USB Port
 Tasmota runs on an ESP.  Either an ESP32 or ESP286.  Here are the two I've tried:
 - [Wemos mini32](https://forum.mhetlive.com/topic/8/mh-et-live-minikit-for-esp32)...This is a cheap clone that isn't really a Wemos..
 - [ESP286 D1 mini](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png?quality=100&strip=all&ssl=1)...another cheap clone I got from aliexpress.
