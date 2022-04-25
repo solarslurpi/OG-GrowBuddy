@@ -32,11 +32,15 @@ mqtt is a great technology for sending messages such as sensor readings to other
 
 ### mqtt Configuration
 
-![Tasmota mqtt configuration](../images/Tasmota_mqtt_setup.jpg)
+![Tasmota mqtt configuration](/images/tasmota_mqtt.jpg)
+
+At a minimum, 
+- set the Host to the name of the machine running the mqtt broker.  I have a raspberry pi called growbuddy I use as the mqtt broker.
+- set the Topic to the name of the Tasmota device.  In this case, snifferbuddy.
 
 ### Example Message
 
-Here is an example of the mqtt message with the `tele/growbuddy/sensor` that gets published:
+Here is an example of the mqtt message with the `tele/snifferbuddy/sensor` that gets published:
 ```
 "ANALOG":{"A0":1023},"SCD30":{"CarbonDioxide":598,"eCO2":569,"Temperature":24.7,"Humidity":46.4,"DewPoint":12.4}
 ```
