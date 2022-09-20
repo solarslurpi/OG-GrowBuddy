@@ -1,6 +1,7 @@
 # Useful pages
 - [ToDos](pages/todos.md)
 - [Tasmota learnings](pages/Tasmota_learnings.md)
+- [Rasp Pi learning](pages/raspPi_learnings.md)
 - [mqtt on rasp pi learnings](pages/mqtt_learnings.md)
 - [wiring thoughts](WIRING_and_connectors.md)
 - [flashing SONOFF S31 devices for local Tasmota](pages/flashing_SONOFF_S31.md)
