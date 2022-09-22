@@ -43,4 +43,7 @@ Currently I am on a Windows PC:
 ![rsync directory](../images/explorer_with_bash.jpg)
 
 A wsl window will open at this location.
+```
+sudo rsync -avh pi@growbuddy:/home/pi/growbuddy_1_data.zip  .
 
+```
