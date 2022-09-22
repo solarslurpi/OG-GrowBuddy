@@ -4,7 +4,8 @@
 As I do projects, I'll use commands here and there unique to a platform - in this case Raspberry Pi/Linux - that I don't use very much.  I'm listing commands and flows I found useful when bumbling about on the Raspberry Pi.
 # Stuff I Learned Awhile Back
 I used to blog my projects on my GitHub bitknitting account.  I have many projects there.  I screwed up my access so I ended up with a new account/GitHub repo (heavy sigh at my silliness). 
-# Listing Services
+# Systemd Services
+## Listing Services
 [My earlier write up about working with Systemd services.](https://github.com/BitKnitting/should_I_water/wiki/systemd-services)
 
 If I want something always running on the Raspberry Pi, I start up a SystemD service.  Over time, I forget what I've done.  This command lists the systemd services.
@@ -26,7 +27,7 @@ dphys-swapfile.service                                      loaded active exited
 fake-hwclock.service                                        loaded active exited  Restore / save the current clock
 getty@tty1.service                                          loaded active running Getty on tty1
 ```
-# Stop A service
+## Stop A service
 ```
 pi@growbuddy:~ $ sudo systemctl stop PAR_BUDDY_HANDLER.service
 ```
@@ -35,5 +36,11 @@ pi@growbuddy:~ $ sudo systemctl stop PAR_BUDDY_HANDLER.service
 pi@growbuddy:~ $ sudo systemctl disable PAR_BUDDY_HANDLER.service
 Removed /etc/systemd/system/multi-user.target.wants/PAR_BUDDY_HANDLER.service.
 ```
-I've been evolving growBuddy for awhile.  Leaving all sorts of systemctl services randomly running. 
+# Copy File from Rasp Pi to Windows
+Currently I am on a Windows PC:
+- open Explorer, go to the directory to use rsync, type in bash in the text field for the filepath.
+
+![rsync directory](../images/explorer_with_bash.jpg)
+
+A wsl window will open at this location.
 
